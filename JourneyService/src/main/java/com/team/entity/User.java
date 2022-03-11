@@ -1,7 +1,5 @@
 package com.team.entity;
 
-import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;

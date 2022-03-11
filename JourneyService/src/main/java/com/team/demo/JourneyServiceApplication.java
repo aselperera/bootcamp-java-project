@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.team.persistence")
 public class JourneyServiceApplication {
 
-	public static void main(String[] args) implements CommanLineRunner {
+	public static void main(String[] args) {
 		SpringApplication.run(JourneyServiceApplication.class, args);
 	}
 

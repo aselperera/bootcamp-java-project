@@ -1,5 +1,7 @@
 package com.team.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class StationServiceImpl implements StationService {
 	@Override
 	public Station saveStation(Station station) {
 		return stationDao.save(station);
+	}
+
+	@Override
+	public List<Station> getAllStations() {
+		return stationDao.findAll();
 	}
 
 }
