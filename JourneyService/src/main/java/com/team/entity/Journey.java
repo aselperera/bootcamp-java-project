@@ -21,10 +21,10 @@ import lombok.ToString;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 public class Journey {
-	@Getter
-	@Setter
-	@Id
-	private int id;
+//	@Getter
+//	@Setter
+//	@Id
+//	private int journeyId;
 	
 	
 	@Getter
