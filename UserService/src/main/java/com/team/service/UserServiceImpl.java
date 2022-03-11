@@ -26,4 +26,29 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	@Override
+	public User updatePassword(String password, int id) {
+		userDao.updatePassword(password, id);
+		return userDao.getById(id);
+	}
+	
+	/*
+	@Override
+	public User updateFirstName(String firstName, int id) {
+		userDao.updateFirstName(firstName, id);
+		return userDao.getById(id);
+	}
+
+	@Override
+	public User updateLastName(String lastName, int id) {
+		userDao.updateLastName(lastName, id);
+		return userDao.getById(id);
+	}
+
+	@Override
+	public User updateEmail(String email, int id) {
+		userDao.updateEmail(email, id);
+		return userDao.getById(id);
+	}
+	*/
 }

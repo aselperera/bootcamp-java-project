@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,17 @@ public class UserResource {
 	public boolean saveUserResource(@RequestBody User user) {
 		return userService.saveUser(user);
 	}
+	
+	@PutMapping(path = "/users/{id}/{newPassword}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User updatePasswordResource(@PathVariable("newPassword") String newPassword, @PathVariable("id") int id) {
+		return userService.updatePassword(newPassword, id);
+	}
+	
+	/*
+	@PutMapping(path = "/users/{id}/{newPassword}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public User updatePasswordResource(@PathVariable("newPassword") String newPassword, @PathVariable("id") int id) {
+		return userService.updatePassword(newPassword, id);
+	}
+	*/
 	
 }
