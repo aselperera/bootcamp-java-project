@@ -6,4 +6,10 @@ public interface UserService {
 	public User getUserById(int id);
 	public boolean saveUser(User user);
 	User updatePassword(String password, int id);
+	/*
+	User updateFirstName(String firstName, int id);
+	User updateLastName(String lastName, int id);
+	User updateEmail(String email, int id);
+	*/
 }
+
