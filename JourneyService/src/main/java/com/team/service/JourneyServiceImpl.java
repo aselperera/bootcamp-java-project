@@ -15,6 +15,7 @@ public class JourneyServiceImpl implements JourneyService {
 	@Autowired
 	JourneyDao journeyDao;
 	
+	
 	/*
 	@Override
 	public Journey getJourneyById(int userId) {
