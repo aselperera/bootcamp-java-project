@@ -3,6 +3,7 @@ package com.team.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.persistence.UserDao;
 
@@ -30,6 +31,14 @@ public class UserServiceImpl implements UserService {
 	public User updatePassword(String password, int id) {
 		userDao.updatePassword(password, id);
 		return userDao.getById(id);
+	}
+
+	@Override
+	public User login(LoginDTO loginDetails) {
+		User usr = userDao.findUserByEmailAndPassword(loginDetails.getEmail(), loginDetails.getPassword());
+		if(usr!=null)
+			return usr;
+		return null;
 	}
 	
 	/*

@@ -16,11 +16,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/")
-	public String getMainPageController() {
-		return "index";
-	}
-	
 	@RequestMapping("/signup")
 	public ModelAndView newUserPageController() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -34,7 +29,6 @@ public class UserController {
 	@RequestMapping("/saveUser")
 	public ModelAndView newUserController(@ModelAttribute("user") User user) {
 		ModelAndView modelAndView=new ModelAndView();
-		System.out.println("USER ______________________:  " + user);
 		
 		String message = null;
 		if(userService.saveUser(user))
