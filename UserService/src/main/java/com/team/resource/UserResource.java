@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.service.UserService;
 
@@ -28,6 +29,11 @@ public class UserResource {
 		return userService.saveUser(user);
 	}
 	
+	@PostMapping(path = "/users/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public User loginResource(@RequestBody LoginDTO loginDetails) {
+		return userService.login(loginDetails);
+	}
+	
 	@PutMapping(path = "/users/{id}/{newPassword}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User updatePasswordResource(@PathVariable("newPassword") String newPassword, @PathVariable("id") int id) {
 		return userService.updatePassword(newPassword, id);
@@ -39,5 +45,4 @@ public class UserResource {
 		return userService.updatePassword(newPassword, id);
 	}
 	*/
-	
 }

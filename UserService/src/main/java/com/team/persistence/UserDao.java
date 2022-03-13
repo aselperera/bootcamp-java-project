@@ -17,6 +17,9 @@ public interface UserDao extends JpaRepository<User, Integer> {
 	@Query("update User set password=:password where id=:id")
 	public int updatePassword(@Param("password") String password, @Param("id") int id);
 	
+	@Query("from User where email=:email and password=:pwd")
+	public User findUserByEmailAndPassword(@Param("email") String email,@Param("pwd") String password);
+	
 	/*
 	@Transactional
 	@Modifying
