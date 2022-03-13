@@ -2,10 +2,11 @@ package com.team.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+//In the webapp we are not communicating with the db, so we don't need these?
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -19,11 +20,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-@Entity
+//@Entity
 public class Journey {
 	@Getter
 	@Setter
-	@Id
+	//@Id
 	private int id;
 	
 	
