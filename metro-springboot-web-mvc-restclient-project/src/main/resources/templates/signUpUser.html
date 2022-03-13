@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlsns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Sign up</h1>
+<!--  
+<form action="./saveEmployee" method="post">
+	Enter Employee ID <input type="text" name="empId"><br><br>
+	Enter Employee Name <input type="text" name="empName"><br><br>
+	Enter Employee Designation <input type="text" name="empDesignation"><br><br>
+	Enter Employee Department <input type="text" name="empDepartment"><br><br>
+	Enter Employee Salary <input type="text" name="empSalary"><br><br>
+	<input type="submit" value="Save Employee">
+</form>
+-->
+
+<form action="#" th:action="@{./saveUser}" method="post" th:object="${user}">
+	Enter User id <input type="text" th:field="*{id}"><br><br>
+	Enter  first name<input type="text" th:field="*{firstName}"><br><br>
+	Enter last name <input type="text" th:field="*{lastName}"><br><br>
+	Enter email <input type="text" th:field="*{email}"><br><br>
+	Enter password <input type="text" th:field="*{password}"><br><br>
+	Enter balance <input type="number" th:field="*{balance}"><br><br>
+	<input type="submit" value="Save User">
+</form>
+
+<br><br>
+<a href="/">To Go Main Page</a>
+</body>
+</html>
