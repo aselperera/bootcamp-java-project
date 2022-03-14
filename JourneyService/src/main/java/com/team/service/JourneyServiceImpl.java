@@ -20,16 +20,10 @@ public class JourneyServiceImpl implements JourneyService {
 	@Autowired
 	JourneyDao journeyDao;
 
-	@Autowired
-	private RestTemplate restTemplate;
-
 	@Override
-	
 	public Journey getJourneyById(int userId) {
 
-		
 		return journeyDao.getById(userId);
-		
 
 	}
 
@@ -41,8 +35,17 @@ public class JourneyServiceImpl implements JourneyService {
 		}
 		return false;
 	}
-	
-	
+
+	@Override
+	public boolean startJourney(int userId, int startStationId) {
+		int rows = journeyDao.startJourney(userId, startStationId, false);//hardcoded false for applyFine
+		
+		if (rows >0) {
+			return true;
+		}
+		return false;
+	}
+
 //	public LocalDateTime getCurrentTime() {
 //		LocalDateTime currentTime = LocalDateTime.now();
 //		return currentTime;

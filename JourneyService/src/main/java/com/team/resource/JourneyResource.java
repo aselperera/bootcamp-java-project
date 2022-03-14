@@ -25,4 +25,9 @@ public class JourneyResource {
 	public boolean saveJourneyResource(@RequestBody Journey journey) {
 		return journeyService.saveJourney(journey);
 	}
+	
+	@PostMapping(path = "/journeys/start/{userId}/{startStationId}" /*, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE*/)
+	public boolean startJourneyResource(@PathVariable("userId") int userId, @PathVariable("startStationId") int startStationId) {
+		return journeyService.startJourney(userId, startStationId);
+	}
 }

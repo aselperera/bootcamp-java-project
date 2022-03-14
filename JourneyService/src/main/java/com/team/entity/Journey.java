@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.lang.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -37,28 +39,32 @@ public class Journey {
 	
 	@Getter
 	@Setter
+	@Column(nullable = true)
 	private int endStationId;
 	
 	@Getter
 	@Setter
+	@Column(nullable = true)
 	private LocalDateTime startTime;
 	
 	@Getter
 	@Setter
+	@Column(nullable = true)
 	private LocalDateTime endTime;
 	
 	@Getter
 	@Setter
+	@Column(nullable = true)
 	private double price;
 	
 	@Getter
 	@Setter
 	private boolean applyFine;
 
-	public Journey(int userId, int startStationId, int endStationId) {
-		super();
+	public Journey(int userId, int startStationId) {
+		
 		this.userId = userId;
 		this.startStationId = startStationId;
-		this.endStationId = endStationId;
+		
 	}
 }

@@ -1,6 +1,7 @@
 package com.team.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -12,7 +13,7 @@ import com.team.persistence.JourneyDao;
 @SpringBootApplication(scanBasePackages = "com.team")
 @EntityScan(basePackages = "com.team.entity")
 @EnableJpaRepositories(basePackages = "com.team.persistence")
-public class JourneyServiceApplication {
+public class JourneyServiceApplication /*implements CommandLineRunner*/{
 
 	@Autowired
 	private JourneyDao journeyDao;
@@ -21,13 +22,13 @@ public class JourneyServiceApplication {
 		SpringApplication.run(JourneyServiceApplication.class, args);
 	}
 
-	//@Override
-	public void run(String... args) throws Exception {
-		// Journey j1= new Journey(101, 202, 203, 2022-03-14T15:29:01.101040,
-		// 2022-03-14T15:29:01.101040, 12, false);
-		Journey j1 = new Journey(101, 202, 203);
-
-		journeyDao.save(j1);
-
-	}
+//	@Override
+//	public void run(String... args) throws Exception {
+//		// Journey j1= new Journey(101, 202, 203, 2022-03-14T15:29:01.101040,
+//		// 2022-03-14T15:29:01.101040, 12, false);
+////		Journey j1 = new Journey(101, 202, 203);
+////
+////		journeyDao.save(j1);
+//
+//	}
 }
