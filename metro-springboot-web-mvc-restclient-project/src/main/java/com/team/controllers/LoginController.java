@@ -24,6 +24,7 @@ public class LoginController {
 		modelAndView.addObject("loginDetails", new LoginDTO());
 		modelAndView.setViewName("index");
 		
+		
 		return modelAndView;
 	}
 	
