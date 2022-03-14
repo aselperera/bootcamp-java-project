@@ -41,10 +41,11 @@ public class JourneyServiceImpl implements JourneyService {
 		}
 		return false;
 	}
-
-	public LocalDateTime getCurrentTime() {
-		LocalDateTime currentTime = LocalDateTime.now();
-		return currentTime;
-	}
+	
+	
+//	public LocalDateTime getCurrentTime() {
+//		LocalDateTime currentTime = LocalDateTime.now();
+//		return currentTime;
+//	}
 
 }

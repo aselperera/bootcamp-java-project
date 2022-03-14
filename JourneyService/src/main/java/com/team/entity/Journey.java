@@ -26,7 +26,7 @@ public class Journey {
 //	@Id
 //	private int journeyId;
 	
-	
+	@Id
 	@Getter
 	@Setter
 	private int userId;
