@@ -54,4 +54,11 @@ public class Journey {
 	@Getter
 	@Setter
 	private boolean applyFine;
+
+	public Journey(int userId, int startStationId, int endStationId) {
+		super();
+		this.userId = userId;
+		this.startStationId = startStationId;
+		this.endStationId = endStationId;
+	}
 }

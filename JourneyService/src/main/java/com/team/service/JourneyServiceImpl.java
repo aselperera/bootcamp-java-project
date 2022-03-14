@@ -13,6 +13,7 @@ import com.team.entity.Journey;
 import com.team.entity.Journeys;
 import com.team.entity.Station;
 import com.team.entity.User;
+import com.team.entity.Users;
 import com.team.persistence.JourneyDao;
 
 @Service
@@ -29,14 +30,28 @@ public class JourneyServiceImpl implements JourneyService {
 	 * Journey journey = new
 	 */
 	@Override
+//	public Journeys getJourneyById(int userId) {
+//
+//		Users users=restTemplate.getForObject("http://localhost:8001/users/"+userId, Users.class);
+//		List<Journey> journeyList=new ArrayList<Journey>();
+//		
+//		for (User user:users.getUserList()) {
+//			Station station=restTemplate.getForObject("htpp://localhost:8002/stations/"+station.getSequenceNumber(), Station.class);
+//			Journey journey=new Journey(userId, station.getSequenceNumber(), station.getSequenceNumber(), journey.getStartTime(), journey.getEndTime(), journey.getPrice() , journey.isApplyFine());
+//			journeyList.add(journey);
+//		}
+//		
+//		Journeys journeys=new Journeys(journeyList);
+//		return journeys;
+	
 	public Journeys getJourneyById(int userId) {
 
 		Users users=restTemplate.getForObject("http://localhost:8001/users/"+userId, Users.class);
 		List<Journey> journeyList=new ArrayList<Journey>();
 		
 		for (User user:users.getUserList()) {
-			Station station=restTemplate.getForObject("htpp://localhost:8002/stations/"+station.getSequenceNumber(), Station.class);
-			Journey journey=new Journey(userId, station.getSequenceNumber(), station.getSequenceNumber(), journey.getStartTime(), journey.getEndTime(), journey.getPrice() , journey.isApplyFine());
+			Station station=restTemplate.getForObject("http://localhost:8002/stations/"+station.getSequenceNumber(), Station.class);
+			Journey journey=new Journey(userId, station.getSequenceNumber(), station.getSequenceNumber());
 			journeyList.add(journey);
 		}
 		
