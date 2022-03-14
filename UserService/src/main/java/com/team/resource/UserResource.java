@@ -38,4 +38,9 @@ public class UserResource {
 	public User updatePasswordResource(@PathVariable("newPassword") String newPassword, @PathVariable("id") int id) {
 		return userService.updatePassword(newPassword, id);
 	}
+	
+	@PutMapping(path = "/users", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public User updateUserResource(@RequestBody User user) {
+		return userService.updateUser(user);
+	}
 }

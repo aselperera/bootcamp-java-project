@@ -8,10 +8,7 @@ public interface UserService {
 	public boolean saveUser(User user);
 	User updatePassword(String password, int id);
 	User login(LoginDTO loginDetails);
-	/*
-	User updateFirstName(String firstName, int id);
-	User updateLastName(String lastName, int id);
-	User updateEmail(String email, int id);
-	*/
+	User updateUser(User user);
 }
 
+	
