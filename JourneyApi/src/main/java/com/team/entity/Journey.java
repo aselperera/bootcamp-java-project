@@ -19,21 +19,7 @@ import lombok.ToString;
 @ToString
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-public class Journey {
-
-//	public Journey(int id, int userId, int startStationId, LocalDateTime startTime, double price) {
-//		this.id = id;
-//		this.userId = userId;
-//		this.startStationId = startStationId;
-//		this.startTime = startTime;
-//		this.price = price;
-//	}
-	
-//	@Getter
-//	@Setter
-//	@Id
-//	private int id;
-	
+public class Journey {	
 	
 	@Getter
 	@Setter
@@ -80,6 +66,5 @@ public class Journey {
 		this.userId = userId;
 		this.startStationId = startStationId;
 	}
-	
-	
+		
 }

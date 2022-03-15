@@ -47,18 +47,13 @@
 
 package com.team.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.team.entity.Journey;
-import com.team.entity.Station;
-import com.team.entity.User;
 
 import com.team.persistence.JourneyDao;
 
@@ -83,40 +78,38 @@ public class JourneyServiceImpl implements JourneyService {
 		return false;
 	}
 
-//	@Override
-//	public boolean startJourney(int userId, int startStationId) {
-//		int rows = journeyDao.startJourney(userId, startStationId, false);//hardcoded false for applyFine
-//		
-//		if (rows >0) {
-//			return true;
-//		}
-//		return false;
-//	}
 	@Override
-	public boolean startJourney(int userId, int startStationId, LocalDateTime startTime) {
-		int rows = journeyDao.startJourney(userId, startStationId, startTime);//hardcoded false for applyFine
+	public boolean startJourney(int userId, int startStationId) {
 		
-		if (rows >0) {
-			return true;
-		}
-		return false;
+		return saveJourney(new Journey(userId, startStationId, 0, LocalDateTime.now(), null, 0.00, false));
+		
 	}
 
 	@Override
-	public boolean updateJourney(int userId, int endStationId, LocalDateTime endTime, double price) {
-		int rows = journeyDao.updateJourney(userId, endStationId, endTime, price);
-		if (rows >0) {
-			return true;
+	public boolean updateJourney(int userId, int endStationId) {
+		
+		// Get user existing journey
+		Journey existingUserJourney = getJourneyById(userId);
+		
+		// Calculate fare
+		double fare = Math.max(5.00 * (endStationId - existingUserJourney.getStartStationId()), 5.00); // Minimum 5.00 spend to account for someone swiping and swiping out at same station
+		
+		// Determine whether to apply fine
+		LocalDateTime currentTime = LocalDateTime.now();
+		boolean applyFine = false;
+		if(ChronoUnit.MINUTES.between(existingUserJourney.getStartTime(), currentTime) >= 120) {
+			applyFine = true;
+			fare += 10.00;
 		}
-		return false;
+		
+		// Update fields
+		existingUserJourney.setEndStationId(endStationId);
+		existingUserJourney.setEndTime(currentTime);
+		existingUserJourney.setPrice(fare);
+		existingUserJourney.setApplyFine(applyFine);
+		
+		return saveJourney(existingUserJourney);
+		
 	}
-
-//	public LocalDateTime getCurrentTime() {
-//		LocalDateTime currentTime = LocalDateTime.now();
-//		return currentTime;
-//	}
-	
-	
 
 }
-
