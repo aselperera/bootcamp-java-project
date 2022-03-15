@@ -46,9 +46,20 @@ public class JourneyServiceImpl implements JourneyService {
 		return false;
 	}
 
+	@Override
+	public boolean updateJourney(int userId, int endStationId, LocalDateTime endTime, double price) {
+		int rows = journeyDao.updateJourney(userId, endStationId, endTime, price);
+		if (rows >0) {
+			return true;
+		}
+		return false;
+	}
+
 //	public LocalDateTime getCurrentTime() {
 //		LocalDateTime currentTime = LocalDateTime.now();
 //		return currentTime;
 //	}
+	
+	
 
 }
