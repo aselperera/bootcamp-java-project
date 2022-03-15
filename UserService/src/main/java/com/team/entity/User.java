@@ -1,5 +1,6 @@
 package com.team.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,7 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "balance" })
 @Entity
 public class User {
 
@@ -41,6 +42,7 @@ public class User {
 	
 	@Getter
 	@Setter
+	@Column(nullable = true, columnDefinition = "float default 100.0")
 	private double balance;
-	
+
 }

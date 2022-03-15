@@ -40,24 +40,11 @@ public class UserServiceImpl implements UserService {
 			return usr;
 		return null;
 	}
-	
-	/*
-	@Override
-	public User updateFirstName(String firstName, int id) {
-		userDao.updateFirstName(firstName, id);
-		return userDao.getById(id);
-	}
 
 	@Override
-	public User updateLastName(String lastName, int id) {
-		userDao.updateLastName(lastName, id);
-		return userDao.getById(id);
+	public User updateUser(User user) {
+		userDao.updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getId());
+		User updatedUser = getUserById(user.getId());
+		return updatedUser;
 	}
-
-	@Override
-	public User updateEmail(String email, int id) {
-		userDao.updateEmail(email, id);
-		return userDao.getById(id);
-	}
-	*/
 }
