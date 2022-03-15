@@ -115,5 +115,4 @@ buildNumber.properties
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,maven
 
 # Custom exclusions
-application.properties
 .DS_Store
