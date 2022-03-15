@@ -37,8 +37,8 @@ public interface JourneyDao extends JpaRepository<Journey, Integer> {
 	
 	@Transactional
 	@Modifying
-	@Query(value="insert into Journey (userId, startStationId, endTime) values (:userId, :startStationId, :endTime)", nativeQuery=true)
-	public int startJourney(@Param("userId") int userId, @Param("startStationId") int startStationId, @Param("endTime") LocalDateTime endTime);
+	@Query(value="insert into Journey (userId, startStationId, startTime) values (:userId, :startStationId, :startTime)", nativeQuery=true)
+	public int startJourney(@Param("userId") int userId, @Param("startStationId") int startStationId, @Param("startTime") LocalDateTime startTime);
 	
 	@Transactional
 	@Modifying
