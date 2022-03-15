@@ -83,9 +83,18 @@ public class JourneyServiceImpl implements JourneyService {
 		return false;
 	}
 
+//	@Override
+//	public boolean startJourney(int userId, int startStationId) {
+//		int rows = journeyDao.startJourney(userId, startStationId, false);//hardcoded false for applyFine
+//		
+//		if (rows >0) {
+//			return true;
+//		}
+//		return false;
+//	}
 	@Override
-	public boolean startJourney(int userId, int startStationId) {
-		int rows = journeyDao.startJourney(userId, startStationId, false);//hardcoded false for applyFine
+	public boolean startJourney(int userId, int startStationId, LocalDateTime startTime) {
+		int rows = journeyDao.startJourney(userId, startStationId, startTime);//hardcoded false for applyFine
 		
 		if (rows >0) {
 			return true;

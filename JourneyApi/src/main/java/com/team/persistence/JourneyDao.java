@@ -30,10 +30,15 @@ import com.team.entity.Journey;
 public interface JourneyDao extends JpaRepository<Journey, Integer> {
 	
 	
+//	@Transactional
+//	@Modifying
+//	@Query(value="insert into Journey (userId, startStationId, applyFine) values (:userId, :startStationId, :applyFine)", nativeQuery=true)
+//	public int startJourney(@Param("userId") int userId, @Param("startStationId") int startStationId, @Param("applyFine") boolean applyFine);
+	
 	@Transactional
 	@Modifying
-	@Query(value="insert into Journey (userId, startStationId, applyFine) values (:userId, :startStationId, :applyFine)", nativeQuery=true)
-	public int startJourney(@Param("userId") int userId, @Param("startStationId") int startStationId, @Param("applyFine") boolean applyFine);
+	@Query(value="insert into Journey (userId, startStationId, endTime) values (:userId, :startStationId, :endTime)", nativeQuery=true)
+	public int startJourney(@Param("userId") int userId, @Param("startStationId") int startStationId, @Param("endTime") LocalDateTime endTime);
 	
 	@Transactional
 	@Modifying

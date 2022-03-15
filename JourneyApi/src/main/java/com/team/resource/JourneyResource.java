@@ -32,6 +32,7 @@ package com.team.resource;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,8 +60,8 @@ public class JourneyResource {
 	}
 	
 	@PostMapping(path = "/journeys/start/{userId}/{startStationId}" /*, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE*/)
-	public boolean startJourneyResource(@PathVariable("userId") int userId, @PathVariable("startStationId") int startStationId) {
-		return journeyService.startJourney(userId, startStationId);
+	public boolean startJourneyResource(@PathVariable("userId") int userId, @PathVariable("startStationId") int startStationId, @PathVariable("endTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startTime) {
+		return journeyService.startJourney(userId, startStationId, startTime = LocalDateTime.now());
 	}
 	
 	@PutMapping(path = "/journeys/update/{userId}/{endStationId}/{endTime}/{price}" /*, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE*/)

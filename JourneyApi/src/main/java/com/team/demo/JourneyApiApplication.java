@@ -15,7 +15,7 @@ import com.team.persistence.JourneyDao;
 @SpringBootApplication(scanBasePackages = "com.team")
 @EntityScan(basePackages = "com.team.entity")
 @EnableJpaRepositories(basePackages = "com.team.persistence")
-public class JourneyApiApplication implements CommandLineRunner {
+public class JourneyApiApplication /*implements CommandLineRunner*/ {
 
 	@Autowired
 	private JourneyDao journeyDao;
@@ -24,13 +24,13 @@ public class JourneyApiApplication implements CommandLineRunner {
 		SpringApplication.run(JourneyApiApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		Journey j1= new Journey(101, 202, 203, LocalDateTime.now(),
-				LocalDateTime.now(), 12.00, false);
+//	@Override
+//	public void run(String... args) throws Exception {
+//		Journey j1= new Journey(101, 202, 203, LocalDateTime.now(),
+//				LocalDateTime.now(), 12.00, false);
 
 //		Journey j1 = new Journey(101, 201);
 
-		journeyDao.save(j1);
-	}
+//		journeyDao.save(j1);
+//	}
 }
