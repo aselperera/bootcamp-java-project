@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.entity.User;
@@ -42,6 +43,24 @@ public class UserController {
 		modelAndView.addObject("message", message);
 		modelAndView.setViewName("output");
 		
+		return modelAndView;
+	}
+	
+	@RequestMapping("/topUpBalance")
+	public ModelAndView getTopUp(@ModelAttribute("balance") double balance) {
+		ModelAndView modelAndView = new ModelAndView();
+
+		if(userService.topUpBalance(loginController.getCurrentUser().getId(), balance)) {
+			modelAndView.addObject("balance");
+			String message = "Top up Successful!";
+			modelAndView.addObject("message", message);
+			modelAndView.setViewName("output");
+		}
+		else {
+				String message = "Top Up Failed!";
+				modelAndView.addObject("message", message);
+				modelAndView.setViewName("index");
+			}
 		return modelAndView;
 	}
 	
