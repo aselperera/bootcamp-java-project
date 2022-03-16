@@ -25,12 +25,12 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 	
-	@Override
-	public boolean updateUser(User user) {
+//	@Override
+//	public boolean updateUser(User user) {
 //		Boolean updatedUser = restTemplate.exchange("http://localhost:8001/users", HttpMethod.PUT, user, User.class);
 //		if(updatedUser != null)
 //			return true;
 //		return false;
-		System.out.println("Under Development");
-	}
+//		System.out.println("Under Development");
+//	}
 }
