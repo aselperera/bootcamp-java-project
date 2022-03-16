@@ -22,6 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="container">
 		<h1>Bill</h1>
 		<table border="1">
@@ -44,5 +45,30 @@
 		</table>
 		<br> <a href="./swipeInForm">Make another journey</a>
 	</div>
+=======
+	<h1>Bill</h1>
+	<table border="1">
+		<tr>
+			<th>Start Station</th>
+			<th>Start Time</th>
+			<th>End Station</th>
+			<th>End Time</th>
+			<th>Initial Fare</th>
+			<th>Fine</th>
+			<th>Total Fare</th>
+		</tr>
+		<tr>
+			<td th:text="${bill.startStationName}"></td>
+			<td th:text="${bill.startTime}"></td>
+			<td th:text="${bill.endStationName}"></td>
+			<td th:text="${bill.endTime}"></td>
+			<td th:text="${bill.price}"></td>
+			<td th:text="${bill.fine}"></td>
+			<td th:text="${bill.totalPrice}"></td>
+		</tr>
+	</table>
+	<br>
+	<a href="./swipeInForm">Make another journey</a>
+>>>>>>> c3b7d638d57a4ac9a36e3dcc5d493019270a9957
 </body>
 </html>
