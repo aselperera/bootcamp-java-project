@@ -47,20 +47,21 @@ public class UserController {
 	}
 	
 	@RequestMapping("/topUpBalance")
-	public ModelAndView getTopUp(@ModelAttribute("balance") double balance) {
+	public ModelAndView getTopUp(@RequestParam("userId") int userId, @RequestParam("topUp") double topUpAmount) {
 		ModelAndView modelAndView = new ModelAndView();
+		
+		String message = null;
 
-		if(userService.topUpBalance(loginController.getCurrentUser().getId(), balance)) {
-			modelAndView.addObject("balance");
-			String message = "Top up Successful!";
-			modelAndView.addObject("message", message);
-			modelAndView.setViewName("output");
+		if(userService.topUpBalance(userId, topUpAmount)) {
+//			modelAndView.addObject("balance");
+			message = "Top up Successful!";
+		} else {
+			message = "Top Up Failed!";
 		}
-		else {
-				String message = "Top Up Failed!";
-				modelAndView.addObject("message", message);
-				modelAndView.setViewName("index");
-			}
+		
+		modelAndView.addObject("message", message);
+		modelAndView.setViewName("output");
+		
 		return modelAndView;
 	}
 	

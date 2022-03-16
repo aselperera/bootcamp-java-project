@@ -28,10 +28,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public double updateBalance(double topUpAmount, int id) {
+	public User updateBalance(double topUpAmount, int id) {
 		double balance = userDao.getById(id).getBalance() + topUpAmount;
 		userDao.updateBalance(balance, id);
-		return userDao.getById(id).getBalance();
+		return userDao.getById(id);
 	}
 
 	@Override

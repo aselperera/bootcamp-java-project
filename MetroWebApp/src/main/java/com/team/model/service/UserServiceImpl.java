@@ -34,11 +34,12 @@ public class UserServiceImpl implements UserService {
 	public boolean topUpBalance(int userId, double topUpAmount) {
 		HttpHeaders header = new HttpHeaders();
 		HttpEntity<Double> entity = new HttpEntity<Double>(header);
-		double newBalance = restTemplate.exchange("http://localhost:8001/users/"+userId+"/"+topUpAmount,
+		User updatedBalanceUser = restTemplate.exchange("http://localhost:8001/users/"+userId+"/"+topUpAmount,
 				HttpMethod.PUT,
 				entity,
-				Double.class).getBody();
-		if(newBalance>0.0) {
+				User.class).getBody();
+		
+		if(updatedBalanceUser != null) {
 			return true;
 		}
 		return false;

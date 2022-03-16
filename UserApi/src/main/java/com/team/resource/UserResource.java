@@ -35,7 +35,7 @@ public class UserResource {
 	}
 	
 	@PutMapping(path = "/users/{id}/{topUpAmount}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public double updateBalanceResource(@PathVariable("topUpAmount") double topUpAmount, @PathVariable("id") int id) {
+	public User updateBalanceResource(@PathVariable("topUpAmount") double topUpAmount, @PathVariable("id") int id) {
 		return userService.updateBalance(topUpAmount, id);
 	}
 	

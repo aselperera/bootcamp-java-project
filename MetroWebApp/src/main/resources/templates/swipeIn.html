@@ -44,9 +44,11 @@
           <h4 class="modal-title">Top Up Balance</h4>
         </div>
         <div class="modal-body">
-          <form action="#" th:action="@{./topUpBalance}" th:object="${balance}" method=post>
+          <form action="#" th:action="@{./topUpBalance}" th:object="${topUpAmount}" method=post>
+          	  <label for="id">Enter User ID:</label>
+          	  <input type="text" id="userId" name="userId"><br><br>
           	  <label for="price">Enter amount:</label>
-          	  <input type="text" id="price" name="price"><br><br>
+          	  <input type="text" id="topUp" name="topUp"><br><br>
           	  <button>Submit</button>
           </form>
         </div>
