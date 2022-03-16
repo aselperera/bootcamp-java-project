@@ -6,5 +6,6 @@ public interface JourneyService {
 
 	Journey getJourneyById(int userId);
 	boolean swipeOut(int userId, int stationId);
+	boolean startJourney(int userId, int stationId);
 
 }
