@@ -12,8 +12,17 @@ import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.model.service.LoginService;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Controller
 public class LoginController {
+	
+	@Setter
+	@Getter
+	private User currentUser;
+
+	
 	@Autowired
 	private LoginService loginService;
 	
@@ -39,6 +48,7 @@ public class LoginController {
 			String message =" Login successful! Hello, " + currentUser.getFirstName();
 			modelAndView.addObject("message", message);
 			modelAndView.setViewName("output");
+			this.currentUser=currentUser;
 
 		}
 		else {

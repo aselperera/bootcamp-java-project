@@ -41,4 +41,14 @@ public class UserController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("/update")
+	public ModelAndView UpdateUserPageController() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("user", new User());
+		modelAndView.setViewName("updateUser");
+		
+		return modelAndView;
+	}
 }

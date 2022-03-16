@@ -1,7 +1,8 @@
 package com.team.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,5 +24,14 @@ public class UserServiceImpl implements UserService {
 		if(newUser != null)
 			return true;
 		return false;
+	}
+	
+	@Override
+	public boolean updateUser(User user) {
+//		Boolean updatedUser = restTemplate.exchange("http://localhost:8001/users", HttpMethod.PUT, user, User.class);
+//		if(updatedUser != null)
+//			return true;
+//		return false;
+		System.out.println("Under Development");
 	}
 }

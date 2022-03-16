@@ -16,6 +16,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private LoginController loginController;
+	
 	@RequestMapping("/signup")
 	public ModelAndView newUserPageController() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -35,6 +38,23 @@ public class UserController {
 			message="User Added Succesfully";
 		else
 			message="User Addition Failed";
+		
+		modelAndView.addObject("message", message);
+		modelAndView.setViewName("output");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping("/updateUser")
+	public ModelAndView updateUserController(@ModelAttribute("user") User user) {
+		ModelAndView modelAndView=new ModelAndView();
+		
+		User currentUser = loginController.getCurrentUser();
+		String message = null;
+		if(userService.updateUser(currentUser))
+			message="User updated Succesfully";
+		else
+			message="User update Failed";
 		
 		modelAndView.addObject("message", message);
 		modelAndView.setViewName("output");
