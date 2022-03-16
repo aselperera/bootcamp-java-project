@@ -7,5 +7,5 @@ import com.team.entity.Journey;
 
 @Repository
 public interface JourneyDao extends JpaRepository<Journey, Integer> {
-
+	
 }

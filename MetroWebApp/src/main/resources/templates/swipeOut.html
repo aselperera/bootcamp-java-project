@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- Need to add greeting to user -->
+	<h1>Swipe out</h1>
+
+	<form action="./swipeOut" method="post">
+		Enter User ID : <input type="text" name="userId"><br> <br>
+		<label for="stations">Choose a Station:</label>
+		<select name="station" id="station">
+			<option th:each="station : ${stations}" th:text="${station.sequenceNumber} + ' : ' + ${station.stationName}" th:value="${station.sequenceNumber}"></option>
+		</select>
+		<br> <br>
+		<input type="submit" value="Swipe out">
+	</form>
+</body>
+</html>

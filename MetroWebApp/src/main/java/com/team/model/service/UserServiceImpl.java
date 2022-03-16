@@ -1,8 +1,6 @@
 package com.team.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean saveUser(User user) {
+		user.setBalance(100.0);
 		Boolean newUser = restTemplate.postForObject("http://localhost:8001/users", user, Boolean.class);
 		if(newUser != null)
 			return true;
