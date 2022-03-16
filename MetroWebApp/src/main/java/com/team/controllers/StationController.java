@@ -2,6 +2,8 @@ package com.team.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,11 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.entity.Bill;
 import com.team.entity.Station;
+import com.team.entity.User;
 import com.team.model.service.JourneyService;
+import com.team.model.service.LoginService;
 import com.team.model.service.StationService;
 
 @Controller
 public class StationController {
+	
+	@Autowired
+	private LoginController loginController;
 	
 	@Autowired
 	private StationService stationService;
@@ -36,7 +43,12 @@ public class StationController {
 	@RequestMapping("/swipeOutForm")
 	public ModelAndView getSwipeOut(@ModelAttribute("station") Station station) {
 		ModelAndView modelAndView = new ModelAndView();
+		
+		// Creating Journey object
+		User user = loginController.getCurrentUser();
 		Station stat = stationService.getStationById(station.getSequenceNumber());
+		journeyService.startJourney(user.getId(), stat.getSequenceNumber());
+	
 		String message = "You have successfully swiped in at " + stat.getStationName();
 		List<Station> allStations = stationService.getAllStations();
 		modelAndView.addObject("message", message);

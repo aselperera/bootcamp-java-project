@@ -69,5 +69,19 @@ public class JourneyServiceImpl implements JourneyService {
 		}
 		return null;
 	}
+
+	@Override
+	public boolean startJourney(int userId, int stationId) {
+		HttpHeaders header = new HttpHeaders();
+		HttpEntity<Journey> entity = new HttpEntity<Journey>(header);
+		Journey journey = restTemplate.exchange("http://localhost:8003/journeys/start/"+userId+"/"+stationId,
+				HttpMethod.POST,
+				entity,
+				Journey.class).getBody();
+		if(journey != null) {
+			return true;
+		}
+		return false;
+	}
 	
 }
