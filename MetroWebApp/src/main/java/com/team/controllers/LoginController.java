@@ -21,7 +21,6 @@ public class LoginController {
 	@Setter
 	@Getter
 	private User currentUser;
-
 	
 	@Autowired
 	private LoginService loginService;
