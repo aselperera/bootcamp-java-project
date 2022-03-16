@@ -13,9 +13,9 @@ import com.team.entity.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
 	@Transactional
-	@Modifying
-	@Query("update User set password=:password where id=:id")
-	public int updatePassword(@Param("password") String password, @Param("id") int id);
+	@Modifying(clearAutomatically = true)
+	@Query("update User set balance=:balance where id=:id")
+	public void updateBalance(@Param("balance") double balance, @Param("id") int id);
 	
 	@Query("from User where email=:email and password=:pwd")
 	public User findUserByEmailAndPassword(@Param("email") String email,@Param("pwd") String password);
