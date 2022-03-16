@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.entity.Bill;
 import com.team.entity.Journey;
 import com.team.entity.Station;
 import com.team.model.service.JourneyService;
@@ -49,9 +50,10 @@ public class StationController {
 	public ModelAndView swipeOutController(@RequestParam("userId") int userId, @RequestParam("station") int stationId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(journeyService.swipeOut(userId, stationId)) {
-			Journey completedJourney = journeyService.getJourneyById(userId);
-			modelAndView.addObject("bill", completedJourney);
+		Bill bill = journeyService.swipeOut(userId, stationId);
+		
+		if(bill != null) {
+			modelAndView.addObject("bill", bill);
 			modelAndView.setViewName("bill");
 		} else {
 			modelAndView.addObject("message", "Swipe out failed.");
