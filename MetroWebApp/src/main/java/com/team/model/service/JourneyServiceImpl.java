@@ -14,6 +14,11 @@ public class JourneyServiceImpl implements JourneyService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Override
+	public Journey getJourneyById(int userId) {
+		return restTemplate.getForObject("http://localhost:8003/journeys/"+userId, Journey.class);
+	}
 
 	@Override
 	public boolean swipeOut(int userId, int stationId) {
@@ -27,6 +32,6 @@ public class JourneyServiceImpl implements JourneyService {
 			return true;
 		}
 		return false;
-	}	
+	}
 	
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Bill</h1>
+	<table border="1">
+		<tr>
+			<th>Start Station</th>
+			<th>Start Time</th>
+			<th>End Station</th>
+			<th>End Time</th>
+			<th>Fare</th>
+			<th>Fined?</th>
+		</tr>
+		<tr>
+			<td th:text="${bill.startStationId}"></td>
+			<td th:text="${bill.startTime}"></td>
+			<td th:text="${bill.endStationId}"></td>
+			<td th:text="${bill.endTime}"></td>
+			<td th:text="${bill.price}"></td>
+			<td th:text="${bill.applyFine}"></td>
+		</tr>
+	</table>
+</body>
+</html>

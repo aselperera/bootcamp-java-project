@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.entity.Journey;
 import com.team.entity.Station;
 import com.team.model.service.JourneyService;
 import com.team.model.service.StationService;
@@ -52,6 +53,15 @@ public class StationController {
 		
 		modelAndView.addObject("message", message);
 		modelAndView.setViewName("output");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/bill")
+	public ModelAndView billPageController() {
+		ModelAndView modelAndView = new ModelAndView();
+		Journey completedJourney = journeyService.getJourneyById(101); // Temporary hard code
+		modelAndView.addObject("bill", completedJourney);
+		modelAndView.setViewName("bill");
 		return modelAndView;
 	}
 
