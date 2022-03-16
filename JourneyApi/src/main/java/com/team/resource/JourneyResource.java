@@ -33,7 +33,7 @@ public class JourneyResource {
 	}
 	
 	@PutMapping(path = "/journeys/update/{userId}/{endStationId}")
-	public boolean updateJourneyResource(@PathVariable("userId") int userId, @PathVariable("endStationId") int endStationId) {
+	public Journey updateJourneyResource(@PathVariable("userId") int userId, @PathVariable("endStationId") int endStationId) {
 		return journeyService.updateJourney(userId, endStationId);
 	}
 }

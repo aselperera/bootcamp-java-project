@@ -86,7 +86,7 @@ public class JourneyServiceImpl implements JourneyService {
 	}
 
 	@Override
-	public boolean updateJourney(int userId, int endStationId) {
+	public Journey updateJourney(int userId, int endStationId) {
 		
 		// Get user existing journey
 		Journey existingUserJourney = getJourneyById(userId);
@@ -108,7 +108,10 @@ public class JourneyServiceImpl implements JourneyService {
 		existingUserJourney.setPrice(fare);
 		existingUserJourney.setApplyFine(applyFine);
 		
-		return saveJourney(existingUserJourney);
+		if(saveJourney(existingUserJourney)) {
+			return getJourneyById(userId);
+		}
+		return null;
 		
 	}
 

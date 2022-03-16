@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication(scanBasePackages = "com.team")
 @EntityScan(basePackages = "com.team.entity")
 @EnableJpaRepositories(basePackages = "com.team.persistence")
-public class StationServiceApplication /*implements CommandLineRunner */ {
+public class StationApiApplication {
 	
 	/*
 	@Autowired
@@ -26,7 +26,7 @@ public class StationServiceApplication /*implements CommandLineRunner */ {
 	*/
 	
 	public static void main(String[] args) {
-		SpringApplication.run(StationServiceApplication.class, args);
+		SpringApplication.run(StationApiApplication.class, args);
 	}
 	
 	@Bean
