@@ -36,6 +36,10 @@ public class Bill {
 	
 	@Getter
 	@Setter
-	private boolean applyFine;
+	private double fine;
+	
+	@Getter
+	@Setter
+	private double totalPrice;
 	
 }
