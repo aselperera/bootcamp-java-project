@@ -47,8 +47,6 @@ public class LoginController {
 			String message =" Login successful! Hello, " + currentUser.getFirstName();
 			modelAndView.addObject("message", message);
 			modelAndView.setViewName("output");
-			this.currentUser=currentUser;
-
 		}
 		else {
 			String message =" Login Failed!";
