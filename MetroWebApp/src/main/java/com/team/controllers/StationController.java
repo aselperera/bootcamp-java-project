@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.entity.Bill;
-import com.team.entity.Journey;
 import com.team.entity.Station;
 import com.team.model.service.JourneyService;
 import com.team.model.service.StationService;

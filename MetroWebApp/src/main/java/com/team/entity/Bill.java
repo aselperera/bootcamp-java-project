@@ -1,13 +1,5 @@
 package com.team.entity;
 
-import java.time.LocalDateTime;
-
-//In the webapp we are not communicating with the db, so we don't need these?
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -32,11 +24,11 @@ public class Bill {
 	
 	@Getter
 	@Setter
-	private LocalDateTime startTime;
+	private String startTime;
 	
 	@Getter
 	@Setter
-	private LocalDateTime endTime;
+	private String endTime;
 	
 	@Getter
 	@Setter
@@ -45,4 +37,5 @@ public class Bill {
 	@Getter
 	@Setter
 	private boolean applyFine;
+	
 }

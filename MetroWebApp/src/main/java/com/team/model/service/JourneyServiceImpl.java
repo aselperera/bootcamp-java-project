@@ -1,5 +1,9 @@
 package com.team.model.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -36,10 +40,17 @@ public class JourneyServiceImpl implements JourneyService {
 		if(journey != null) {
 			Station startStation = stationService.getStationById(journey.getStartStationId());
 			Station endStation = stationService.getStationById(journey.getEndStationId());
+			
+			DateTimeFormatter timeFormat = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+			LocalDateTime startTime = journey.getStartTime();
+			LocalDateTime endTime = journey.getEndTime();
+			String formattedStartTime = startTime.format(timeFormat);
+			String formattedEndTime = endTime.format(timeFormat);
+			
 			Bill bill = new Bill(startStation.getStationName(),
 					endStation.getStationName(),
-					journey.getStartTime(),
-					journey.getEndTime(),
+					formattedStartTime,
+					formattedEndTime,
 					journey.getPrice(),
 					journey.isApplyFine());
 			return bill;
