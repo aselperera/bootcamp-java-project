@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
 <head>
+
 <meta charset="ISO-8859-1">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -10,6 +12,8 @@
 	
 	
 	<h2 th:text="'Hello ' + ${session.user.firstName} + ', please select a station to swipe in.'"></h2>
+	
+	<h2 th:text="'Your current balance is &#163;' + ${session.user.balance} + '.'"></h2>
 	 
 	 
 	<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> 
