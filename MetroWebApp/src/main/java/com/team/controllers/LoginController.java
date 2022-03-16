@@ -40,11 +40,12 @@ public class LoginController {
 			modelAndView.addObject("message", message);
 			modelAndView.setViewName("output");
 			
+			
 		}
 		else {
 			String message =" Login Failed!";
 			modelAndView.addObject("message", message);
-			modelAndView.setViewName("output");
+			modelAndView.setViewName("index");
 		}
 		
 		return modelAndView;
