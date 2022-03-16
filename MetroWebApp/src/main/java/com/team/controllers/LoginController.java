@@ -40,6 +40,7 @@ public class LoginController {
 	public ModelAndView loginCheckController(@ModelAttribute("loginDetails") LoginDTO loginDetails, HttpSession session) {
 		ModelAndView modelAndView=new ModelAndView();
 		User currentUser = loginService.loginCheck(loginDetails);
+		this.currentUser = currentUser;
 		
 		if(currentUser != null) {
 			modelAndView.addObject("user", currentUser);
