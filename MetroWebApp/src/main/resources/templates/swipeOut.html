@@ -9,13 +9,13 @@
 	<h1>Swipe out</h1>
 
 	<form action="./swipeOut" method="post">
-		Enter User ID : <input type="text" name="userId"><br><br>
-		<label for="stations">Choose a Station:</label> <select
-			name="stations" id="stations">
-			<option th:each="station : ${stations}"
-				th:text="${station.stationName}"></option>
-		</select> <br>
-		<br> <input type="submit" value="Swipe out">
+		Enter User ID : <input type="text" name="userId"><br> <br>
+		<label for="stations">Choose a Station:</label>
+		<select name="station" id="station">
+			<option th:each="station : ${stations}" th:text="${station.sequenceNumber} + ' : ' + ${station.stationName}" th:value="${station.sequenceNumber}"></option>
+		</select>
+		<br> <br>
+		<input type="submit" value="Swipe out">
 	</form>
 </body>
 </html>

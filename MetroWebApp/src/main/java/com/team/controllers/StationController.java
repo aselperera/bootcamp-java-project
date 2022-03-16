@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.entity.Station;
@@ -39,11 +40,11 @@ public class StationController {
 	}
 	
 	@RequestMapping("/swipeOut")
-	public ModelAndView swipeOutController() {
+	public ModelAndView swipeOutController(@RequestParam("userId") int userId, @RequestParam("station") int stationId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		String message = null;
-		if(journeyService.swipeOut(101, 204)) {
+		if(journeyService.swipeOut(userId, stationId)) {
 			message = "Swiped out successfully!";
 		} else {
 			message = "Swipe out failed.";
