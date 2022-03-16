@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.team.entity.LoginDTO;
 import com.team.entity.User;
@@ -27,35 +28,31 @@ public class LoginController {
 	
 	@RequestMapping("/")
 	public ModelAndView getLoginPage() {
+		
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("loginDetails", new LoginDTO());
 		modelAndView.setViewName("index");
-		
-		
+
 		return modelAndView;
 	}
 	
 	@RequestMapping("/loginCheck")
 	public ModelAndView loginCheckController(@ModelAttribute("loginDetails") LoginDTO loginDetails, HttpSession session) {
-		ModelAndView modelAndView=new ModelAndView();
+		
 		User currentUser = loginService.loginCheck(loginDetails);
 		this.currentUser = currentUser;
 		
 		if(currentUser != null) {
+			ModelAndView modelAndView =  new ModelAndView("redirect:/swipeInForm");
 			modelAndView.addObject("user", currentUser);
 			session.setAttribute("user", currentUser);
-			String message =" Login successful! Hello, " + currentUser.getFirstName();
-			modelAndView.addObject("message", message);
-			modelAndView.setViewName("output");
+			return modelAndView;
 		}
 		else {
-			String message =" Login Failed!";
-			modelAndView.addObject("message", message);
+			ModelAndView modelAndView=new ModelAndView();
 			modelAndView.setViewName("index");
+			return modelAndView;
 		}
-		
-		return modelAndView;
-		
 	}
 }

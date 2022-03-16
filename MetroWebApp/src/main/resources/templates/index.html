@@ -7,7 +7,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-	<link th:href="@{/styles/main.css}" rel="stylesheet" />
+<link th:href="@{/styles/main.css}" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -27,14 +27,19 @@
 			<form action="#" th:action="@{./loginCheck}"
 				th:object="${loginDetails}" method=post>
 				<div class="form-group">
-		    		<input type="email" th:field="*{email}" name="email" placeholder="E-mail address" class="form-control" id="emailInput" aria-describedby="emailHelp">
+					<input type="email" th:field="*{email}"
+						placeholder="E-mail address" class="form-control">
 				</div>
 				<div class="form-group">
-		    		<input type="password" placeholder="Password" th:field="*{password}" name="password" class="form-control" id="passwordInput" >
+					<input type="password" placeholder="Password"
+						th:field="*{password}" class="form-control">
 				</div>
 				<button type="submit" class="form-btn">Log in</button>
 				<h2 style="color: red" th:text=${message}></h2>
-				<p class="pt-3"> Not a member yet? <a href="./signup">Sign Up</a>, and start travelling. </p>
+				<p class="pt-3">
+					Not a member yet? <a href="./signup">Sign Up</a>, and start
+					travelling.
+				</p>
 			</form>
 		</div>
 	</div>

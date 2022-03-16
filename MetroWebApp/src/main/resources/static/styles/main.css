@@ -24,3 +24,14 @@ a:hover {
 	margin: auto;
 }
 
+.container {
+	width: 70vw;
+	min-height: 45vh;
+	margin: auto;
+	background-color: #dadfe3;
+	border-radius: 0.7rem;
+	padding: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content:space-evenly
+}
