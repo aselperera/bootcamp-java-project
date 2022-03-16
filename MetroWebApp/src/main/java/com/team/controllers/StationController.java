@@ -44,24 +44,15 @@ public class StationController {
 	public ModelAndView swipeOutController(@RequestParam("userId") int userId, @RequestParam("station") int stationId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		String message = null;
 		if(journeyService.swipeOut(userId, stationId)) {
-			message = "Swiped out successfully!";
+			Journey completedJourney = journeyService.getJourneyById(userId);
+			modelAndView.addObject("bill", completedJourney);
+			modelAndView.setViewName("bill");
 		} else {
-			message = "Swipe out failed.";
+			modelAndView.addObject("message", "Swipe out failed.");
+			modelAndView.setViewName("output");
 		}
 		
-		modelAndView.addObject("message", message);
-		modelAndView.setViewName("output");
-		return modelAndView;
-	}
-	
-	@RequestMapping("/bill")
-	public ModelAndView billPageController() {
-		ModelAndView modelAndView = new ModelAndView();
-		Journey completedJourney = journeyService.getJourneyById(101); // Temporary hard code
-		modelAndView.addObject("bill", completedJourney);
-		modelAndView.setViewName("bill");
 		return modelAndView;
 	}
 
