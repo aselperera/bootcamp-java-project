@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@import "form.css";
+
+
+body {
+	height: 100vh;
+	background: rgb(85,111,131);
+	background: linear-gradient(123deg, rgba(85,111,131,1) 0%, rgba(168,184,209,1) 55%, rgba(220,244,249,1) 100%);
+	display: flex;
+	color: #3A3B3C;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #2d5594;
+	transition: all 0.3s;
+}
+
+.content-container {
+	width: 70vw;
+	margin: auto;
+}
+
