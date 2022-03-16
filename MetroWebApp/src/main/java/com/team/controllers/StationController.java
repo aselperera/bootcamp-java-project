@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.entity.Journey;
+import com.team.entity.Bill;
 import com.team.entity.Station;
 import com.team.entity.User;
 import com.team.model.service.JourneyService;
@@ -47,23 +47,33 @@ public class StationController {
 		// Creating Journey object
 		User user = loginController.getCurrentUser();
 		Station stat = stationService.getStationById(station.getSequenceNumber());
-		journeyService.startJourney(user.getId(), stat.getSequenceNumber());
+		
+		if(journeyService.startJourney(user.getId(), stat.getSequenceNumber())) {
+			String message = "You have successfully swiped in at " + stat.getStationName();
+			List<Station> allStations = stationService.getAllStations();
+			modelAndView.addObject("message", message);
+			modelAndView.addObject("stations", allStations);
+			modelAndView.setViewName("swipeOut");
+		} else {
+			String message = "Swipe in failed.";
+			modelAndView.addObject("message,", message);
+			modelAndView.setViewName("message");
+		}
 	
-		String message = "You have successfully swiped in at " + stat.getStationName();
-		List<Station> allStations = stationService.getAllStations();
-		modelAndView.addObject("message", message);
-		modelAndView.addObject("stations", allStations);
-		modelAndView.setViewName("swipeOut");
 		return modelAndView;
 	}
 	
 	@RequestMapping("/swipeOut")
-	public ModelAndView swipeOutController(@RequestParam("userId") int userId, @RequestParam("station") int stationId) {
+	public ModelAndView swipeOutController(@RequestParam("station") int stationId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(journeyService.swipeOut(userId, stationId)) {
-			Journey completedJourney = journeyService.getJourneyById(userId);
-			modelAndView.addObject("bill", completedJourney);
+		// Get user
+		User user = loginController.getCurrentUser();
+		
+		Bill bill = journeyService.swipeOut(user.getId(), stationId);
+		
+		if(bill != null) {
+			modelAndView.addObject("bill", bill);
 			modelAndView.setViewName("bill");
 		} else {
 			modelAndView.addObject("message", "Swipe out failed.");
