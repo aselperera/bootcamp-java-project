@@ -48,11 +48,16 @@ public class LoginController {
 			String message =" Login successful! Hello, " + currentUser.getFirstName();
 			modelAndView.addObject("message", message);
 			modelAndView.setViewName("output");
+<<<<<<< HEAD
+=======
+			
+			
+>>>>>>> 96fcdb76cba62d668ec05549abe76f23498555fb
 		}
 		else {
 			String message =" Login Failed!";
 			modelAndView.addObject("message", message);
-			modelAndView.setViewName("output");
+			modelAndView.setViewName("index");
 		}
 		
 		return modelAndView;
