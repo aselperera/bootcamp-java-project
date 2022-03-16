@@ -8,10 +8,10 @@
 <!-- Need to add greeting to user -->
 	<h1>Swipe in</h1>
 	
-	<form action=#> <!-- Still need to add action... maybe to save that the user has successfully swiped in -->
-	  <label for="stations">Choose a Station:</label>
-	  <select name="stations" id="stations">
-	    <option th:each="station : ${stations}" th:text="${station.stationName}"></option>
+	<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> <!-- Still need to add action... maybe to save that the user has successfully swiped in -->
+	  <label for="dropdown">Choose a Station:</label>
+	  <select name="dropdown" id="stations" th:field="*{sequenceNumber}">
+	    <option th:each="station : ${stations}" th:text="${station.stationName}" th:value="${station.sequenceNumber}"></option>
 	  </select>
 	  <br><br>
 	  <input type="submit" value="Swipe in">
