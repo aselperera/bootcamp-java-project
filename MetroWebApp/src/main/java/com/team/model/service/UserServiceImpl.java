@@ -1,10 +1,12 @@
 package com.team.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.team.entity.Journey;
@@ -44,7 +46,21 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
-		
+	
+	@Override
+	public Journey hasUnfinishedJourney(int userId) {
+		try {
+			Journey journey = restTemplate.getForObject("http://localhost:8003/journeys/"+userId, Journey.class);
+			if(journey!=null) {
+				if(journey.getEndStationId() == 0) {
+					return journey;
+				}
+			}
+			return null;
+		} catch (HttpServerErrorException e) {
+			return null;
+		}
+	}
 }
 	
 //	@Override
