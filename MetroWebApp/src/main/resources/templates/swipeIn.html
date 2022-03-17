@@ -29,10 +29,14 @@
 		<h2 th:text="'Hello ' + ${session.user.firstName} + ', please select a station to swipe in.'"></h2>
 		
 		<h2 th:text="'Your current balance is &#163;' + ${session.user.balance} + '.'"></h2>
+		 <p style="color: red;" th:if="${user.getBalance() < 20}" th:text="${messageTopUp}">
 		  -->
 		  
 		<h2 th:text="${messageGreeting}"></h2>
 		<h2 th:text="${messageBalance}"></h2>
+		<p style="color: red;" th:if="${user.getBalance() < 20}">
+			You do not have enough credit to start a journey, please top up to a minimum of &#163;20.00
+		</p>
 		
 		<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> 
 		  <label for="dropdown">Choose a Station:</label>
@@ -40,7 +44,7 @@
 		    <option th:each="station : ${stations}" th:text="${station.stationName}" th:value="${station.sequenceNumber}"></option>
 		  </select>
 		  <br><br>
-		  <input type="submit" value="Swipe in">
+		  <input type="submit" value="Swipe in" th:disabled="${user.getBalance() < 20}">
 		</form>
 	</div>
 </body>
