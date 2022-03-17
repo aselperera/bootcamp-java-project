@@ -92,8 +92,11 @@ public class JourneyServiceImpl implements JourneyService {
 		// Get user existing journey
 		Journey existingUserJourney = getJourneyById(userId);
 		
+		double fareBetweenStations = 5.00;
+		double fareSameStation = 2.00; // Minimum 2.00 spend to account for someone swiping and swiping out at same station
+		
 		// Calculate fare
-		double fare = Math.max(5.00 * (Math.abs(endStationId - existingUserJourney.getStartStationId())), 5.00); // Minimum 5.00 spend to account for someone swiping and swiping out at same station
+		double fare = Math.max(fareBetweenStations * (Math.abs(endStationId - existingUserJourney.getStartStationId())), fareSameStation);
 		
 		// Determine whether to apply fine
 		LocalDateTime currentTime = LocalDateTime.now();
