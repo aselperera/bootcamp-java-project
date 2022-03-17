@@ -17,6 +17,7 @@ import com.team.entity.User;
 import com.team.model.service.JourneyService;
 import com.team.model.service.LoginService;
 import com.team.model.service.StationService;
+import com.team.model.service.UserService;
 
 @Controller
 public class StationController {
@@ -29,6 +30,9 @@ public class StationController {
 	
 	@Autowired
 	private JourneyService journeyService;
+	
+	@Autowired
+	private UserService userService; // To get user again after updating balance
 	
 	@RequestMapping("/swipeInForm")
 	public ModelAndView getSwipeIn() {
@@ -72,8 +76,11 @@ public class StationController {
 		
 		Bill bill = journeyService.swipeOut(user.getId(), stationId);
 		
+		// Get user again - with updated balance
+		User updatedUser = userService.getUserById(user.getId());
+		
 		if(bill != null) {
-			modelAndView.addObject("user", user); // To get new balance
+			modelAndView.addObject("user", updatedUser); // To get new balance
 			modelAndView.addObject("bill", bill);
 			modelAndView.setViewName("bill");
 		} else {
