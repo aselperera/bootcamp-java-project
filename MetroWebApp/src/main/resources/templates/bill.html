@@ -25,6 +25,7 @@
 
 	<div class="container">
 		<h1>Bill</h1>
+		<h3 th:text="'Your new balance is: &#163;' + ${#numbers.formatDecimal({user.balance},1,2)}"></h3>
 		<table border="1">
 			<tr>
 				<th>Start Station</th>
