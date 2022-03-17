@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.model.service.UserService;
 
@@ -40,8 +41,8 @@ public class UserController {
 		else
 			message="User Addition Failed";
 		
-		modelAndView.addObject("message", message);
-		modelAndView.setViewName("output");
+		modelAndView.addObject("loginDetails", new LoginDTO());
+		modelAndView.setViewName("index");
 		
 		return modelAndView;
 	}

@@ -2,7 +2,7 @@
 <html xmlns:th="https://thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign up</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -24,30 +24,27 @@
 	<div class="content-container">
 		<div class="form-container">
 			<h1 class="title pb-3">Sign up</h1>
-			<form action="#" th:action="@{./saveUser}" method="post"
+			<form id="form" name="form" action="registration.php" th:action="@{./saveUser}" method="post"
 				th:object="${user}">
-				<div class="form-group">
-					<input type="number" name="id" class="form-control"
-						placeholder="id" th:field="*{id}">
-				</div>
+				
 				<div class="form-group">
 					<input type="text" name="firstName" class="form-control"
-						th:field="*{firstName}" placeholder="First name">
+						th:field="*{firstName}" placeholder="First name" required>
 				</div>
 				<div class="form-group">
 					<input type="text" name="lastName" class="form-control"
-						th:field="*{lastName}" placeholder="Last name">
+						th:field="*{lastName}" placeholder="Last name" required>
 				</div>
 				<div class="form-group">
-					<input type="text" name="email" class="form-control"
-						th:field="*{email}" placeholder="Email">
+					<input type="email" name="email" class="form-control"
+						th:field="*{email}" placeholder="Email" required>
 				</div>
 				<div class="form-group">
-					<input type="password" placeholder="Password"
+					<input type="password" placeholder="Enter Password"
 						th:field="*{password}" name="password" class="form-control"
-						id="passwordInput">
+						id="password" value="" required>
 				</div>
-				<button type="submit" class="form-btn">Sign up</button>
+				<button type="submit" id="submit" name="submit" value="registration" class="form-btn">Sign up</button>
 			</form>
 		</div>
 	</div>
