@@ -49,20 +49,14 @@ public class UserController {
 	
 	@RequestMapping("/topUpBalance")
 	public String getTopUp(@RequestParam("topUp") double topUpAmount, RedirectAttributes redirectAttrs) {
-		//ModelAndView modelAndView =  new ModelAndView("redirect:/swipeInForm");
 		// Get current user
 		User currentUser = loginController.getCurrentUser();
 		String message = null;
 		if(userService.topUpBalance(currentUser.getId(), topUpAmount)) {
-			redirectAttrs.addFlashAttribute("success", "Top up Successful!");
-			//message = "Top up Successful!";
+			redirectAttrs.addFlashAttribute("success", "Top up was successful!");
 		} else {
-			redirectAttrs.addFlashAttribute("error", "Top Up Failed!");
-			//redirectAttrs.addAttribute("message", "Top Up Failed!");
-			//message = "Top Up Failed!";
+			redirectAttrs.addFlashAttribute("error", "Top up failed!");
 		}
-		//modelAndView.addObject("message", message);
-		//return modelAndView;
 		return "redirect:/swipeInForm";
 	}
 	
