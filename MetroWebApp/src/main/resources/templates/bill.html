@@ -19,12 +19,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+<title>Your Bill</title>
 </head>
 <body>
 
 	<div class="container">
 		<h1>Bill</h1>
+		<h3 th:text="'Your new balance is: &#163;' + ${#numbers.formatDecimal({user.balance},1,2)}"></h3>
+		<h3 style="color:red" th:if="${bill.fine > 0}" th:text="'You have been fined because you have spent longer than two hours on the metro.'">Y</h3>
 		<table border="1">
 			<tr>
 				<th>Start Station</th>
@@ -40,9 +42,9 @@
 				<td th:text="${bill.startTime}"></td>
 				<td th:text="${bill.endStationName}"></td>
 				<td th:text="${bill.endTime}"></td>
-				<td th:text="${bill.price}"></td>
-				<td th:text="${bill.fine}"></td>
-				<td th:text="${bill.totalPrice}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.price},1,2)}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.fine},1,2)}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.totalPrice},1,2)}"></td>
 			</tr>
 		</table>
 		<br> <a href="./swipeInForm">Make another journey</a>

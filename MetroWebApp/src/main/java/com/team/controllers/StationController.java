@@ -88,7 +88,11 @@ public class StationController {
 		
 		Bill bill = journeyService.swipeOut(user.getId(), stationId);
 		
+		// Get user again - with updated balance
+		User updatedUser = userService.getUserById(user.getId());
+		
 		if(bill != null) {
+			modelAndView.addObject("user", updatedUser); // To get new balance
 			modelAndView.addObject("bill", bill);
 			modelAndView.setViewName("bill");
 		} else {
