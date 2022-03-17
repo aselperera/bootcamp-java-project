@@ -54,10 +54,11 @@ public class UserController {
 		User currentUser = loginController.getCurrentUser();
 		String message = null;
 		if(userService.topUpBalance(currentUser.getId(), topUpAmount)) {
-			redirectAttrs.addAttribute("message", "Top up Successful!");
+			redirectAttrs.addFlashAttribute("success", "Top up Successful!");
 			//message = "Top up Successful!";
 		} else {
-			redirectAttrs.addAttribute("message", "Top Up Failed!");
+			redirectAttrs.addFlashAttribute("error", "Top Up Failed!");
+			//redirectAttrs.addAttribute("message", "Top Up Failed!");
 			//message = "Top Up Failed!";
 		}
 		//modelAndView.addObject("message", message);
