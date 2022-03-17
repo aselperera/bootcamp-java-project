@@ -6,7 +6,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-	<link th:href="@{/styles/main.css}" rel="stylesheet" />
+<link th:href="@{/styles/main.css}" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -18,17 +18,21 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+<title>Swipe in</title>
 </head>
 <body>
 	<div class="container">
+		<div class="alert alert-primary" role="alert" th:text="${success}"
+			th:if="${success}"></div>
+		<div class="alert alert-danger" role="alert" th:text="${error}"
+			th:if="${error}"></div>
 		<h1>Swipe in</h1>
-		
-		
-		<h2 th:text="'Hello ' + ${session.user.firstName} + ', please select a station to swipe in.'"></h2>
-		
-		<h2 th:text="'Your current balance is &#163;' + ${session.user.balance} + '.'"></h2>
-		 
+	  
+		<h2 th:text="${messageGreeting}"></h2>
+		<h2 th:text="${messageBalance}"></h2>
+		<p style="color: red;" th:if="${user.getBalance() < 20}">
+			You do not have enough credit to start a journey, please top up to a minimum of &#163;20.00
+		</p>
 		
 		<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> 
 		  <label for="dropdown">Choose a Station:</label>
@@ -36,41 +40,43 @@
 		    <option th:each="station : ${stations}" th:text="${station.stationName}" th:value="${station.sequenceNumber}"></option>
 		  </select>
 		  <br><br>
-		  <input type="submit" value="Swipe in">
+		  <input type="submit" value="Swipe in" th:disabled="${user.getBalance() < 20}">
+
 		</form>
+		<!-- Button trigger modal -->
+		<div class="modal-container">
+			<!-- Trigger the modal with a button -->
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+				data-target="#myModal">Top Up balance</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Top Up Balance</h4>
+						</div>
+						<div class="modal-body">
+							<form action="#" th:action="@{./topUpBalance}"
+								th:object="${topUpAmount}" method=post>
+								<label for="price">Enter amount:</label> <input type="number" placeholder="10" min="1"
+									id="topUp" name="topUp" required><br> <br>
+								<button>Submit</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
 	</div>
 </body>
-
-<!-- Button trigger modal -->
-<div class="container">
-  <h2>Top Up Balance</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Top Up</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Top Up Balance</h4>
-        </div>
-        <div class="modal-body">
-          <form action="#" th:action="@{./topUpBalance}" th:object="${topUpAmount}" method=post>
-          	  <label for="price">Enter amount:</label>
-          	  <input type="text" id="topUp" name="topUp"><br><br>
-          	  <button>Submit</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.entity.LoginDTO;
 import com.team.entity.User;
@@ -48,25 +49,16 @@ public class UserController {
 	}
 	
 	@RequestMapping("/topUpBalance")
-	public ModelAndView getTopUp(@RequestParam("topUp") double topUpAmount) {
-		ModelAndView modelAndView = new ModelAndView();
-		
+	public String getTopUp(@RequestParam("topUp") double topUpAmount, RedirectAttributes redirectAttrs) {
 		// Get current user
 		User currentUser = loginController.getCurrentUser();
-		
 		String message = null;
-
 		if(userService.topUpBalance(currentUser.getId(), topUpAmount)) {
-//			modelAndView.addObject("balance");
-			message = "Top up Successful!";
+			redirectAttrs.addFlashAttribute("success", "Top up was successful!");
 		} else {
-			message = "Top Up Failed!";
+			redirectAttrs.addFlashAttribute("error", "Top up failed!");
 		}
-		
-		modelAndView.addObject("message", message);
-		modelAndView.setViewName("output");
-		
-		return modelAndView;
+		return "redirect:/swipeInForm";
 	}
 	
 //	@RequestMapping("/updateUser")
