@@ -28,7 +28,7 @@
 
 		<h2 th:text="${message}"></h2>
 
-<!--  
+		<!--  
 <<<<<<< HEAD
 		<form action="./swipeOut" method="post">
 			Enter User ID : <input type="text" name="userId"><br> <br>
@@ -44,14 +44,16 @@
 =======
 -->
 
-	<form action="./swipeOut" method="post">
-		<label for="stations">Choose a Station:</label>
-		<select name="station" >
-			<option th:each="station : ${stations}" th:text=" ${station.stationName}" th:value="${station.sequenceNumber}"></option>
-		</select>
-		<br> <br>
-		<input type="submit" value="Swipe out">
-	</form>
-
+		<form action="./swipeOut" method="post">
+			<label for="stations">Choose a Station:</label> <select
+				name="station">
+				<option th:each="station : ${stations}"
+					th:text=" ${station.stationName}"
+					th:value="${station.sequenceNumber}"></option>
+			</select> <br> <br> <input type="submit" value="Swipe out">
+		</form>
+		<form action="#" th:action="@{./}" method="post">
+			<button type="submit" class="form-btn">Log out</button>
+		</form>
 </body>
 </html>

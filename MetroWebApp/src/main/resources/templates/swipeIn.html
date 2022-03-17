@@ -27,22 +27,24 @@
 		<div class="alert alert-danger" role="alert" th:text="${error}"
 			th:if="${error}"></div>
 		<h1>Swipe in</h1>
-	  
+
 		<h2 th:text="${messageGreeting}"></h2>
 		<h2 th:text="${messageBalance}"></h2>
-		<p style="color: red;" th:if="${user.getBalance() < 20}">
-			You do not have enough credit to start a journey, please top up to a minimum of &#163;20.00
-		</p>
-		
-		<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> 
-		  <label for="dropdown">Choose a Station:</label>
-		  <select name="dropdown" id="stations" th:field="*{sequenceNumber}">
-		    <option th:each="station : ${stations}" th:text="${station.stationName}" th:value="${station.sequenceNumber}"></option>
-		  </select>
-		  <br><br>
-		  <input type="submit" value="Swipe in" th:disabled="${user.getBalance() < 20}">
+		<p style="color: red;" th:if="${user.getBalance() < 20}">You do
+			not have enough credit to start a journey, please top up to a minimum
+			of &#163;20.00</p>
 
+		<form th:action="@{./swipeOutForm}" method="post"
+			th:object="${station}">
+			<label for="dropdown">Choose a Station:</label> <select
+				name="dropdown" id="stations" th:field="*{sequenceNumber}">
+				<option th:each="station : ${stations}"
+					th:text="${station.stationName}"
+					th:value="${station.sequenceNumber}"></option>
+			</select> <br> <br> <input type="submit" value="Swipe in"
+				th:disabled="${user.getBalance() < 20}">
 		</form>
+
 		<!-- Button trigger modal -->
 		<div class="modal-container">
 			<!-- Trigger the modal with a button -->
@@ -62,8 +64,9 @@
 						<div class="modal-body">
 							<form action="#" th:action="@{./topUpBalance}"
 								th:object="${topUpAmount}" method=post>
-								<label for="price">Enter amount:</label> <input type="number" placeholder="10" min="1"
-									id="topUp" name="topUp" required><br> <br>
+								<label for="price">Enter amount:</label> <input type="number"
+									placeholder="10" min="1" id="topUp" name="topUp" required><br>
+								<br>
 								<button>Submit</button>
 							</form>
 						</div>
@@ -78,5 +81,9 @@
 
 		</div>
 	</div>
+	<form action="#" th:action="@{./}" method="post">
+		<button type="submit" class="form-btn">Log out</button>
+	</form>
+
 </body>
 </html>
