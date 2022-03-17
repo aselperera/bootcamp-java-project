@@ -33,19 +33,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/saveUser")
-	public ModelAndView newUserController(@ModelAttribute("user") User user) {
-		ModelAndView modelAndView=new ModelAndView();
-		
-		String message = null;
+	public String newUserController(@ModelAttribute("user") User user, RedirectAttributes redirectAttrs) {
+
 		if(userService.saveUser(user))
-			message="User Added Succesfully";
+			redirectAttrs.addFlashAttribute("success", "Sign up was successful!");
 		else
-			message="User Addition Failed";
-		
-		modelAndView.addObject("loginDetails", new LoginDTO());
-		modelAndView.setViewName("index");
-		
-		return modelAndView;
+			redirectAttrs.addFlashAttribute("error", "Sign up failed!");
+
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/topUpBalance")
