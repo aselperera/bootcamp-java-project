@@ -26,8 +26,10 @@
 
 	<div class="container">
 		<h1>Bill</h1>
-		<h3 th:text="'Your new balance is: &#163;' + ${#numbers.formatDecimal({user.balance},1,2)}"></h3>
-		<h3 style="color:red" th:if="${bill.fine > 0}" th:text="'You have been fined because you have spent longer than two hours on the metro.'">Y</h3>
+		<h3
+			th:text="'Your new balance is: &#163;' + ${#numbers.formatDecimal({user.balance},1,2)}"></h3>
+		<h3 style="color: red" th:if="${bill.fine > 0}"
+			th:text="'You have been fined because you have spent longer than two hours on the metro.'">Y</h3>
 		<table border="1">
 			<tr>
 				<th>Start Station</th>
@@ -45,11 +47,15 @@
 				<td th:text="${bill.endTime}"></td>
 				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.price},1,2)}"></td>
 				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.fine},1,2)}"></td>
-				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.totalPrice},1,2)}"></td>
+				<td
+					th:text="'&#163;' + ${#numbers.formatDecimal({bill.totalPrice},1,2)}"></td>
 			</tr>
 		</table>
 		<br> <a href="./swipeInForm">Make another journey</a>
 	</div>
+	<form action="#" th:action="@{./}" method="post">
+		<button type="submit" class="form-btn">Log out</button>
+	</form>
 
 </body>
 </html>
