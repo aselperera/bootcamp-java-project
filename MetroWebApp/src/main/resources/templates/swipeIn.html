@@ -58,7 +58,7 @@
 						<div class="modal-body">
 							<form action="#" th:action="@{./topUpBalance}"
 								th:object="${topUpAmount}" method=post>
-								<label for="price">Enter amount:</label> <input type="number" placeholder="10"
+								<label for="price">Enter amount:</label> <input type="number" placeholder="10" min="1"
 									id="topUp" name="topUp" required><br> <br>
 								<button>Submit</button>
 							</form>
