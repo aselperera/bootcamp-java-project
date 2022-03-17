@@ -26,6 +26,7 @@
 	<div class="container">
 		<h1>Bill</h1>
 		<h3 th:text="'Your new balance is: &#163;' + ${#numbers.formatDecimal({user.balance},1,2)}"></h3>
+		<h3 style="color:red" th:if="${bill.fine > 0}" th:text="'You have been fined because you have spent longer than two hours on the metro.'">Y</h3>
 		<table border="1">
 			<tr>
 				<th>Start Station</th>
