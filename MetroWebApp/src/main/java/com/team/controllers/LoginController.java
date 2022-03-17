@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
 import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.model.service.LoginService;
+import com.team.model.service.UserService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,8 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	
+
 	
 	@RequestMapping("/")
 	public ModelAndView getLoginPage() {
@@ -40,8 +41,12 @@ public class LoginController {
 	@RequestMapping("/loginCheck")
 	public ModelAndView loginCheckController(@ModelAttribute("loginDetails") LoginDTO loginDetails, HttpSession session) {
 		
+		
+		
 		User currentUser = loginService.loginCheck(loginDetails);
 		this.currentUser = currentUser;
+		
+		
 		
 		if(currentUser != null) {
 			ModelAndView modelAndView =  new ModelAndView("redirect:/swipeInForm");
@@ -51,8 +56,13 @@ public class LoginController {
 		}
 		else {
 			ModelAndView modelAndView=new ModelAndView();
+			modelAndView.addObject("user", currentUser);
+			String invalidLogin = "Invalid Login Details";//changes
+			modelAndView.addObject("invalidLogin", invalidLogin);//changes
 			modelAndView.setViewName("index");
 			return modelAndView;
 		}
 	}
+	
+	
 }

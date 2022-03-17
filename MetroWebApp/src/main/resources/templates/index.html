@@ -28,6 +28,15 @@
 			<div class="alert alert-danger" role="alert" th:text="${error}"
 				th:if="${error}"></div>
 			<h1 class="title pb-3">Log in</h1>
+
+			<h2 th:text="${invalidLogin}"></h2>
+			<p style="color: red;" th:if="${user.getPassword != password}">
+				Invalid login details entered, Please try again</p>
+
+
+
+
+
 			<form action="#" th:action="@{./loginCheck}"
 				th:object="${loginDetails}" method=post>
 				<div class="form-group">
@@ -49,3 +58,4 @@
 	</div>
 </body>
 </html>
+.
