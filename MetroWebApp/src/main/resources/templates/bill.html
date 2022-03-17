@@ -40,9 +40,9 @@
 				<td th:text="${bill.startTime}"></td>
 				<td th:text="${bill.endStationName}"></td>
 				<td th:text="${bill.endTime}"></td>
-				<td th:text="${bill.price}"></td>
-				<td th:text="${bill.fine}"></td>
-				<td th:text="${bill.totalPrice}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.price},1,2)}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.fine},1,2)}"></td>
+				<td th:text="'&#163;' + ${#numbers.formatDecimal({bill.totalPrice},1,2)}"></td>
 			</tr>
 		</table>
 		<br> <a href="./swipeInForm">Make another journey</a>
