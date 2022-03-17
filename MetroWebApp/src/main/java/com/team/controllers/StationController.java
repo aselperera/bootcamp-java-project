@@ -41,7 +41,13 @@ public class StationController {
 		User user = loginController.getCurrentUser();
 		User newUser = userService.getUserById(user.getId());
 		String messageGreeting = "Hello " + user.getFirstName() + ", please select a station to swipe in.";
-		String messageBalance = "Your current balance is £" + newUser.getBalance() + ".";
+		String messageBalance = "Your current balance is £" + String.format("%.2f", newUser.getBalance(), 2) + ".";
+//		String messageTopUp = "";
+//		if (newUser.getBalance() < 20) {
+//			messageTopUp = "You do not have enough credit to start a journey, please top up to a minimum of £20.00";
+//		}
+		modelAndView.addObject("user", newUser);
+//		modelAndView.addObject("messageTopUp", messageTopUp);
 		modelAndView.addObject("messageGreeting", messageGreeting);
 		modelAndView.addObject("messageBalance", messageBalance);
 		modelAndView.addObject("stations", allStations);
