@@ -1,5 +1,6 @@
 package com.team.model.service;
 
+import com.team.entity.Journey;
 import com.team.entity.User;
 
 public interface UserService {
@@ -7,5 +8,6 @@ public interface UserService {
 	public boolean saveUser(User user);
 //	public boolean updateUser(User user);
 	public boolean topUpBalance(int userId, double topUpAmount);
+	public Journey hasUnfinishedJourney(int userId);
 	
 }

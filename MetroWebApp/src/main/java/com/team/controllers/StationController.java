@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.entity.Bill;
+import com.team.entity.Journey;
 import com.team.entity.Station;
 import com.team.entity.User;
 import com.team.model.service.JourneyService;
@@ -42,12 +43,9 @@ public class StationController {
 		User newUser = userService.getUserById(user.getId());
 		String messageGreeting = "Hello " + user.getFirstName() + ", please select a station to swipe in.";
 		String messageBalance = "Your current balance is £" + String.format("%.2f", newUser.getBalance(), 2) + ".";
-//		String messageTopUp = "";
-//		if (newUser.getBalance() < 20) {
-//			messageTopUp = "You do not have enough credit to start a journey, please top up to a minimum of £20.00";
-//		}
+
 		modelAndView.addObject("user", newUser);
-//		modelAndView.addObject("messageTopUp", messageTopUp);
+
 		modelAndView.addObject("messageGreeting", messageGreeting);
 		modelAndView.addObject("messageBalance", messageBalance);
 		modelAndView.addObject("stations", allStations);
@@ -58,12 +56,14 @@ public class StationController {
 	
 	@RequestMapping("/swipeOutForm")
 	public ModelAndView getSwipeOut(@ModelAttribute("station") Station station) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		// Creating Journey object
 		User user = loginController.getCurrentUser();
+		// if going to swipe out from log in station would be 0
+		if (station.getSequenceNumber() == 0) {
+			Journey journey = journeyService.getJourneyById(user.getId());
+			station = stationService.getStationById(journey.getStartStationId());
+		}
+		ModelAndView modelAndView = new ModelAndView();
 		Station stat = stationService.getStationById(station.getSequenceNumber());
-		
 		if(journeyService.startJourney(user.getId(), stat.getSequenceNumber())) {
 			String message = "You have successfully swiped in at " + stat.getStationName();
 			List<Station> allStations = stationService.getAllStations();
