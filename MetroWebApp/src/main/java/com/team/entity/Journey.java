@@ -22,11 +22,13 @@ import lombok.ToString;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 //@Entity
 public class Journey {
-	@Getter
-	@Setter
-	//@Id
-	private int id;
 	
+	public Journey(int userId, int startStationId, LocalDateTime startTime) {
+		super();
+		this.userId = userId;
+		this.startStationId = startStationId;
+		this.startTime = startTime;
+	}
 	
 	@Getter
 	@Setter

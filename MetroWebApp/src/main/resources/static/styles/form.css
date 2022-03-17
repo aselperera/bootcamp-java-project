@@ -1,0 +1,23 @@
+
+.form-container {
+	width: 40%;
+	min-height: 45vh;
+	margin: auto;
+	background-color: #dadfe3;
+	border-radius: 0.7rem;
+	padding: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.form-btn {
+	background-color: white;
+	width: 100%;
+	border: none;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	color: #3A3B3C;
+    background: #ffffff;
+	border: 1px solid #999999;;
+}

@@ -28,8 +28,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updatePassword(String password, int id) {
-		userDao.updatePassword(password, id);
+	public User updateBalance(double topUpAmount, int id) {
+		double balance = userDao.getById(id).getBalance() + topUpAmount;
+		userDao.updateBalance(balance, id);
 		return userDao.getById(id);
 	}
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 			return usr;
 		return null;
 	}
-
+	
 	@Override
 	public User updateUser(User user) {
 		userDao.updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getId());

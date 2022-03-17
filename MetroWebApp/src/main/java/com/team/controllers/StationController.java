@@ -2,19 +2,28 @@ package com.team.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.entity.Journey;
+import com.team.entity.Bill;
 import com.team.entity.Station;
+import com.team.entity.User;
 import com.team.model.service.JourneyService;
+import com.team.model.service.LoginService;
 import com.team.model.service.StationService;
+import com.team.model.service.UserService;
 
 @Controller
 public class StationController {
+	
+	@Autowired
+	private LoginController loginController;
 	
 	@Autowired
 	private StationService stationService;
@@ -22,31 +31,65 @@ public class StationController {
 	@Autowired
 	private JourneyService journeyService;
 	
+	@Autowired 
+	private UserService userService;
+	
 	@RequestMapping("/swipeInForm")
 	public ModelAndView getSwipeIn() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Station> allStations = stationService.getAllStations();
+		User user = loginController.getCurrentUser();
+		User newUser = userService.getUserById(user.getId());
+		String messageGreeting = "Hello " + user.getFirstName() + ", please select a station to swipe in.";
+		String messageBalance = "Your current balance is £" + String.format("%.2f", newUser.getBalance(), 2) + ".";
+//		String messageTopUp = "";
+//		if (newUser.getBalance() < 20) {
+//			messageTopUp = "You do not have enough credit to start a journey, please top up to a minimum of £20.00";
+//		}
+		modelAndView.addObject("user", newUser);
+//		modelAndView.addObject("messageTopUp", messageTopUp);
+		modelAndView.addObject("messageGreeting", messageGreeting);
+		modelAndView.addObject("messageBalance", messageBalance);
 		modelAndView.addObject("stations", allStations);
+		modelAndView.addObject("station", new Station());
 		modelAndView.setViewName("swipeIn");
 		return modelAndView;
 	}
 	
 	@RequestMapping("/swipeOutForm")
-	public ModelAndView getSwipeOut() {
+	public ModelAndView getSwipeOut(@ModelAttribute("station") Station station) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<Station> allStations = stationService.getAllStations();
-		modelAndView.addObject("stations", allStations);
-		modelAndView.setViewName("swipeOut");
+		
+		// Creating Journey object
+		User user = loginController.getCurrentUser();
+		Station stat = stationService.getStationById(station.getSequenceNumber());
+		
+		if(journeyService.startJourney(user.getId(), stat.getSequenceNumber())) {
+			String message = "You have successfully swiped in at " + stat.getStationName();
+			List<Station> allStations = stationService.getAllStations();
+			modelAndView.addObject("message", message);
+			modelAndView.addObject("stations", allStations);
+			modelAndView.setViewName("swipeOut");
+		} else {
+			String message = "Swipe in failed.";
+			modelAndView.addObject("message,", message);
+			modelAndView.setViewName("message");
+		}
+	
 		return modelAndView;
 	}
 	
 	@RequestMapping("/swipeOut")
-	public ModelAndView swipeOutController(@RequestParam("userId") int userId, @RequestParam("station") int stationId) {
+	public ModelAndView swipeOutController(@RequestParam("station") int stationId) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if(journeyService.swipeOut(userId, stationId)) {
-			Journey completedJourney = journeyService.getJourneyById(userId);
-			modelAndView.addObject("bill", completedJourney);
+		// Get user
+		User user = loginController.getCurrentUser();
+		
+		Bill bill = journeyService.swipeOut(user.getId(), stationId);
+		
+		if(bill != null) {
+			modelAndView.addObject("bill", bill);
 			modelAndView.setViewName("bill");
 		} else {
 			modelAndView.addObject("message", "Swipe out failed.");

@@ -1,9 +1,14 @@
 package com.team.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.team.entity.Journey;
+import com.team.entity.LoginDTO;
 import com.team.entity.User;
 
 @Service
@@ -24,4 +29,29 @@ public class UserServiceImpl implements UserService {
 			return true;
 		return false;
 	}
+	
+	@Override
+	public boolean topUpBalance(int userId, double topUpAmount) {
+		HttpHeaders header = new HttpHeaders();
+		HttpEntity<Double> entity = new HttpEntity<Double>(header);
+		User updatedBalanceUser = restTemplate.exchange("http://localhost:8001/users/"+userId+"/"+topUpAmount,
+				HttpMethod.PUT,
+				entity,
+				User.class).getBody();
+		
+		if(updatedBalanceUser != null) {
+			return true;
+		}
+		return false;
+	}
+		
 }
+	
+//	@Override
+//	public boolean updateUser(User user) {
+//		Boolean updatedUser = restTemplate.exchange("http://localhost:8001/users", HttpMethod.PUT, user, User.class);
+//		if(updatedUser != null)
+//			return true;
+//		return false;
+//		System.out.println("Under Development");
+//	}
