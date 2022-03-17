@@ -79,9 +79,10 @@ public class JourneyServiceImpl implements JourneyService {
 	}
 
 	@Override
-	public boolean startJourney(int userId, int startStationId) {
-		
-		return saveJourney(new Journey(userId, startStationId, 0, LocalDateTime.now(), null, 0.00, false));
+	public Journey startJourney(int userId, int startStationId) {
+		Journey journey = new Journey(userId, startStationId, 0, LocalDateTime.now(), null, 0.00, false);
+		saveJourney(journey);
+		return journey;
 		
 	}
 

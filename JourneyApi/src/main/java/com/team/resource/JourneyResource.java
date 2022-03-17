@@ -28,7 +28,7 @@ public class JourneyResource {
 	}
 	
 	@PostMapping(path = "/journeys/start/{userId}/{startStationId}")
-	public boolean startJourneyResource(@PathVariable("userId") int userId, @PathVariable("startStationId") int startStationId) {
+	public Journey startJourneyResource(@PathVariable("userId") int userId, @PathVariable("startStationId") int startStationId) {
 		return journeyService.startJourney(userId, startStationId);
 	}
 	
