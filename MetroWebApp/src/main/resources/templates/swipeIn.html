@@ -18,17 +18,21 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+<title>Swipe in</title>
 </head>
 <body>
 	<div class="container">
 		<h1>Swipe in</h1>
 		
+		<!-- 
 		
 		<h2 th:text="'Hello ' + ${session.user.firstName} + ', please select a station to swipe in.'"></h2>
 		
 		<h2 th:text="'Your current balance is &#163;' + ${session.user.balance} + '.'"></h2>
-		 
+		  -->
+		  
+		<h2 th:text="${messageGreeting}"></h2>
+		<h2 th:text="${messageBalance}"></h2>
 		
 		<form th:action="@{./swipeOutForm}" method="post" th:object="${station}"> 
 		  <label for="dropdown">Choose a Station:</label>

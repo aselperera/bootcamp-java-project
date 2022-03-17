@@ -17,6 +17,7 @@ import com.team.entity.User;
 import com.team.model.service.JourneyService;
 import com.team.model.service.LoginService;
 import com.team.model.service.StationService;
+import com.team.model.service.UserService;
 
 @Controller
 public class StationController {
@@ -30,10 +31,19 @@ public class StationController {
 	@Autowired
 	private JourneyService journeyService;
 	
+	@Autowired 
+	private UserService userService;
+	
 	@RequestMapping("/swipeInForm")
 	public ModelAndView getSwipeIn() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Station> allStations = stationService.getAllStations();
+		User user = loginController.getCurrentUser();
+		User newUser = userService.getUserById(user.getId());
+		String messageGreeting = "Hello " + user.getFirstName() + ", please select a station to swipe in.";
+		String messageBalance = "Your current balance is £" + newUser.getBalance() + ".";
+		modelAndView.addObject("messageGreeting", messageGreeting);
+		modelAndView.addObject("messageBalance", messageBalance);
 		modelAndView.addObject("stations", allStations);
 		modelAndView.addObject("station", new Station());
 		modelAndView.setViewName("swipeIn");
