@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.team.entity.Journey;
 import com.team.entity.LoginDTO;
+import com.team.entity.Station;
 import com.team.entity.User;
+import com.team.model.service.JourneyService;
 import com.team.model.service.LoginService;
+import com.team.model.service.StationService;
+import com.team.model.service.UserService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +31,12 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private StationService stationService;
+	
 	@RequestMapping("/")
 	public ModelAndView getLoginPage() {
 		
@@ -37,6 +48,11 @@ public class LoginController {
 		return modelAndView;
 	}
 	
+	
+	public Journey hasUnfinishedJourney(User user) {
+		return userService.hasUnfinishedJourney(user.getId());
+	}
+	
 	@RequestMapping("/loginCheck")
 	public ModelAndView loginCheckController(@ModelAttribute("loginDetails") LoginDTO loginDetails, HttpSession session) {
 		
@@ -44,10 +60,18 @@ public class LoginController {
 		this.currentUser = currentUser;
 		
 		if(currentUser != null) {
-			ModelAndView modelAndView =  new ModelAndView("redirect:/swipeInForm");
-			modelAndView.addObject("user", currentUser);
-			session.setAttribute("user", currentUser);
-			return modelAndView;
+			Journey journey = hasUnfinishedJourney(currentUser);
+			if(journey != null) {
+				ModelAndView modelAndView =  new ModelAndView("redirect:/swipeOutForm");
+				modelAndView.addObject("user", currentUser);
+				session.setAttribute("user", currentUser);
+				return modelAndView;
+			} else {
+				ModelAndView modelAndView =  new ModelAndView("redirect:/swipeInForm");
+				modelAndView.addObject("user", currentUser);
+				session.setAttribute("user", currentUser);
+				return modelAndView;
+			}
 		}
 		else {
 			ModelAndView modelAndView=new ModelAndView();
