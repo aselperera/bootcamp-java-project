@@ -1,4 +1,4 @@
-package com.team.demo;
+package com.team.springclient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,17 +11,16 @@ import com.team.persistence.StationDao;
 
 @SpringBootTest
 class StationApiApplicationTests {
-	
+
 	@Autowired
 	private StationDao stationDao;
-	
-	
 
 	@Test
 	void contextLoads() {
-		Station s1= new Station(44, "Glasgow Central");
+		// Station s1= new Station(44, "Glasgow Central");
+
+		assertThat(stationDao.getById(1).getStationName()).isEqualTo("Abdul Avenue");
 		
-		assertThat(stationDao.getById(44).getStationName()).isEqualTo("Glasgow Central");
 	}
 
 }

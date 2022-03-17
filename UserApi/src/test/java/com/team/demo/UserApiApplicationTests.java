@@ -18,9 +18,9 @@ class UserApiApplicationTests {
 	@Test
 	void contextLoads() {
 
-		User u1 = new User(44, "Abdul", "Rizvi", "ar@ar.com", "password", 29.65);
-
-		assertThat(userDao.getById(44).getFirstName()).isEqualTo("Abdul");
+		//User u1 = new User(105, "Abdul", "Rizvi", "ar@ar.com", "password", 29.65);
+		//userDao.save(u1); //saves into the database
+		assertThat(userDao.getById(105).getFirstName()).isEqualTo("Abdul");//only works if data is in database
 
 	}
 }

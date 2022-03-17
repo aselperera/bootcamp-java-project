@@ -20,9 +20,9 @@ class JourneyApiApplicationTests {
 	@Test
 	void contextLoads() {
 
-		Journey j1 = new Journey(101, 202, 203, LocalDateTime.now(), LocalDateTime.now(), 12.00, false);
+		//Journey j1 = new Journey(101, 202, 203, LocalDateTime.now(), LocalDateTime.now(), 12.00, false);
 		
-		assertThat(journeyDao.getById(101).getStartStationId()).isEqualTo(202);
+		assertThat(journeyDao.getById(101).getStartStationId()).isEqualTo(1);
 
 	}
 
