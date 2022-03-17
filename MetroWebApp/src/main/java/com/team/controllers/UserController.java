@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.team.entity.LoginDTO;
 import com.team.entity.User;
 import com.team.model.service.UserService;
 
@@ -32,19 +33,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/saveUser")
-	public ModelAndView newUserController(@ModelAttribute("user") User user) {
-		ModelAndView modelAndView=new ModelAndView();
-		
-		String message = null;
+	public String newUserController(@ModelAttribute("user") User user, RedirectAttributes redirectAttrs) {
+
 		if(userService.saveUser(user))
-			message="User Added Succesfully";
+			redirectAttrs.addFlashAttribute("success", "Sign up was successful!");
 		else
-			message="User Addition Failed";
-		
-		modelAndView.addObject("message", message);
-		modelAndView.setViewName("output");
-		
-		return modelAndView;
+			redirectAttrs.addFlashAttribute("error", "Sign up failed!");
+
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/topUpBalance")
