@@ -56,24 +56,35 @@ public class StationController {
 	
 	@RequestMapping("/swipeOutForm")
 	public ModelAndView getSwipeOut(@ModelAttribute("station") Station station) {
+		
+		// Get current user
 		User user = loginController.getCurrentUser();
-		// if going to swipe out from log in station would be 0
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		// If station passed in has id of 0, then this is a user who has started a journey, logged out then logged back in
 		if (station.getSequenceNumber() == 0) {
 			Journey journey = journeyService.getJourneyById(user.getId());
-			station = stationService.getStationById(journey.getStartStationId());
-		}
-		ModelAndView modelAndView = new ModelAndView();
-		Station stat = stationService.getStationById(station.getSequenceNumber());
-		if(journeyService.startJourney(user.getId(), stat.getSequenceNumber())) {
-			String message = "You have successfully swiped in at " + stat.getStationName();
+			station = stationService.getStationById(journey.getStartStationId()); // Need to overwrite this with the station they swiped in at
+			
+			String message = "You have successfully swiped in at " + station.getStationName();
 			List<Station> allStations = stationService.getAllStations();
 			modelAndView.addObject("message", message);
 			modelAndView.addObject("stations", allStations);
 			modelAndView.setViewName("swipeOut");
+			
 		} else {
-			String message = "Swipe in failed.";
-			modelAndView.addObject("message,", message);
-			modelAndView.setViewName("message");
+			if(journeyService.startJourney(user.getId(), station.getSequenceNumber())) {
+				String message = "You have successfully swiped in at " + station.getStationName();
+				List<Station> allStations = stationService.getAllStations();
+				modelAndView.addObject("message", message);
+				modelAndView.addObject("stations", allStations);
+				modelAndView.setViewName("swipeOut");
+			} else {
+				String message = "Swipe in failed.";
+				modelAndView.addObject("message,", message);
+				modelAndView.setViewName("message");
+			}
 		}
 	
 		return modelAndView;
