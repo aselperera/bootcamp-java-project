@@ -75,6 +75,9 @@ public class LoginController {
 		}
 		else {
 			ModelAndView modelAndView=new ModelAndView();
+			modelAndView.addObject("user", currentUser);
+			String loginError = "Invalid login details";
+			modelAndView.addObject("loginError", loginError);
 			modelAndView.setViewName("index");
 			return modelAndView;
 		}
