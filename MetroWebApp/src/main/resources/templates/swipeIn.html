@@ -35,12 +35,12 @@
 		<p style="color: red;" th:if="${user.getBalance() < 20}">You do
 			not have enough credit to start a journey, please top up to a minimum
 			of &#163;20.00</p>
+		<h2>Choose a station: </h2>
 		<form th:action="@{./swipeOutForm}" method="post"
 			th:object="${station}">
 			
 			<select class="swipe-in-form form-control form-select form-select-sm" aria-label=".form-select-sm example" name="dropdown" id="stations"
 				th:field="*{sequenceNumber}">
-				<option value=0 selected>Choose station</option>
 				<option th:each="station : ${stations}"
 					th:text="${station.stationName}"
 					th:value="${station.sequenceNumber}"></option>
