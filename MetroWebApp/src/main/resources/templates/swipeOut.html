@@ -44,11 +44,10 @@
 	${station.sequenceNumber} + ' : ' +
 =======
 -->
-
+		<h2>Choose a station: </h2>
 		<form action="./swipeOut" method="post">
 			<select class="swipe-in-form form-control form-select form-select-sm"
 				name="station">
-				<option value=0 selected>Choose station</option>
 				<option th:each="station : ${stations}"
 					th:text=" ${station.stationName}"
 					th:value="${station.sequenceNumber}"></option>
