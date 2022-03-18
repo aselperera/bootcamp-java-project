@@ -47,6 +47,10 @@ a:hover {
 	width: 45%;
 }
 
+.quarter-width {
+	width: 25%;
+}
+
 .log-out {
 	position: absolute;
 	width: 6rem;

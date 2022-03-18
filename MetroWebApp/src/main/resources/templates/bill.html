@@ -52,7 +52,10 @@
 					th:text="'&#163;' + ${#numbers.formatDecimal({bill.totalPrice},1,2)}"></td>
 			</tr>
 		</table>
-		<br> <a href="./swipeInForm">Make another journey</a>
+		<form action="#" th:action="@{./swipeInForm}" method="post">
+			<button type="submit" class="quarter-width form-btn">Make another journey</button>
+		</form>
+		<br>
 		<form action="#" th:action="@{./}" method="post">
 			<button type="submit" class="form-btn log-out">Log out</button>
 		</form>
