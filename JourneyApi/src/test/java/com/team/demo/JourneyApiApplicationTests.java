@@ -22,7 +22,7 @@ class JourneyApiApplicationTests {
 
 		//Journey j1 = new Journey(101, 202, 203, LocalDateTime.now(), LocalDateTime.now(), 12.00, false);
 		
-		assertThat(journeyDao.getById(101).getStartStationId()).isEqualTo(1);
+		assertThat(journeyDao.getById(1).getStartStationId()).isEqualTo(1);
 
 	}
 
