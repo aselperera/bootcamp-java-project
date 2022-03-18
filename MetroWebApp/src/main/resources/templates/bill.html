@@ -3,7 +3,8 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<link rel="icon" href="https://styles.redditmedia.com/t5_2t4gb/styles/communityIcon_enlklgosgam41.png">
+<link rel="icon"
+	href="https://styles.redditmedia.com/t5_2t4gb/styles/communityIcon_enlklgosgam41.png">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -52,10 +53,10 @@
 			</tr>
 		</table>
 		<br> <a href="./swipeInForm">Make another journey</a>
+		<form action="#" th:action="@{./}" method="post">
+			<button type="submit" class="form-btn log-out">Log out</button>
+		</form>
 	</div>
-	<form action="#" th:action="@{./}" method="post">
-		<button type="submit" class="form-btn">Log out</button>
-	</form>
 
 </body>
 </html>
