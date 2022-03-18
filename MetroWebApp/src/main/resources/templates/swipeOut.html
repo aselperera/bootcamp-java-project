@@ -46,15 +46,16 @@
 -->
 
 		<form action="./swipeOut" method="post">
-			<label for="stations">Choose a Station:</label> <select
+			<select class="swipe-in-form form-control form-select form-select-sm"
 				name="station">
+				<option value=0 selected>Choose station</option>
 				<option th:each="station : ${stations}"
 					th:text=" ${station.stationName}"
 					th:value="${station.sequenceNumber}"></option>
-			</select> <br> <br> <input type="submit" value="Swipe out">
+			</select> <input class="form-btn swipe-in" type="submit" value="Swipe out">
 		</form>
 		<form action="#" th:action="@{./}" method="post">
-			<button type="submit" class="form-btn">Log out</button>
+			<button type="submit" class="form-btn log-out swipeout-position">Log out</button>
 		</form>
 </body>
 </html>
