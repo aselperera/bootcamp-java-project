@@ -30,6 +30,9 @@
 				th:if="${error}"></div>
 				<h1 class="title pb-3">Welcome to Spring Metro!</h1>
 			<h2 class="title pb-3">Log in</h2>
+			
+			<p style="color: red;" th:text="${loginError}" th:if="${user == null}"></p>
+			
 			<form action="#" th:action="@{./loginCheck}"
 				th:object="${loginDetails}" method=post>
 				<div class="form-group">
